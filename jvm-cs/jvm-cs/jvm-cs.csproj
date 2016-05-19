@@ -42,11 +42,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attribute.cs" />
+    <Compile Include="ClassData.cs" />
     <Compile Include="ClassReader.cs" />
     <Compile Include="ConstantPool.cs" />
     <Compile Include="ConstantPoolEntry.cs" />
     <Compile Include="DataReader.cs" />
+    <Compile Include="FieldData.cs" />
     <Compile Include="JarFile.cs" />
+    <Compile Include="MethodData.cs" />
     <Compile Include="Opcodes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

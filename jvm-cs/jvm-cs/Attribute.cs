@@ -22,16 +22,11 @@ namespace jvm_cs
         {
             switch (_name)
             {
-                case "ConstantValue":
-                case "Signature":
-                    _bytes = reader.ReadBytes(2);
-                    break;
-
                 case "Code":
                     ushort maxStack = reader.ReadUInt16();
                     ushort maxLocals = reader.ReadUInt16();
-                    ushort codeLength = reader.ReadUInt16();
-                    byte[] code = reader.ReadBytes(codeLength);
+                    uint codeLength = reader.ReadUInt32();
+                    byte[] code = reader.ReadBytes((int)codeLength);
                     ushort exceptionTableCount = reader.ReadUInt16();
                     for (int i = 0; i < exceptionTableCount; i++)
                     {
@@ -49,8 +44,6 @@ namespace jvm_cs
                     }
                     break;
 
-                case "RuntimeVisible- Annotations":
-                    throw new NotImplementedException();
                 default:
                     reader.ReadBytes((int)_length);
                     break;

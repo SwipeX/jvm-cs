@@ -10,11 +10,6 @@ namespace Test
     {
         private string _fileLocation;
         private byte[] _bytes;
-        private ushort _minor;
-        private ushort _major;
-        private string _className;
-        private string _superName;
-        private ushort _access;
         private List<string> interfaces = new List<string>();
 
         public ClassReader(string fileLocation)
@@ -28,7 +23,7 @@ namespace Test
             _bytes = bytes;
         }
 
-        public void Read()
+        public ClassData Read()
         {
             DataReader reader = new DataReader(new MemoryStream(_bytes));
             uint magic = reader.ReadUInt32();
@@ -36,26 +31,32 @@ namespace Test
             {
                 throw new InvalidDataException("Magic Number is incorrect.");
             }
-            _minor = reader.ReadUInt16();
-            _major = reader.ReadUInt16();
+            ushort minor = reader.ReadUInt16();
+            ushort major = reader.ReadUInt16();
             ushort constantPoolSize = reader.ReadUInt16();
             ConstantPool constantPool = new ConstantPool(constantPoolSize);
             constantPool.Read(reader);
             constantPool.Resolve();
-            _access = reader.ReadUInt16();
-            _className = (string)constantPool.Value(reader.ReadUInt16());
-            _superName = (string)constantPool.Value(reader.ReadUInt16());
+            ushort access = reader.ReadUInt16();
+            string className = (string)constantPool.Value(reader.ReadUInt16());
+            string superName = (string)constantPool.Value(reader.ReadUInt16());
             ushort interfaceCount = reader.ReadUInt16();
             for (int i = 0; i < interfaceCount; i++)
             {
                 interfaces.Add((string)constantPool.Value(reader.ReadUInt16()));
             }
+
+            ClassData classData = new ClassData(className, superName, access, constantPool, interfaces, _bytes);
+
             ushort fieldCount = reader.ReadUInt16();
             for (int i = 0; i < fieldCount; i++)
             {
                 ushort accessFlags = reader.ReadUInt16();
                 ushort nameIndex = reader.ReadUInt16();
                 ushort descriptorIndex = reader.ReadUInt16();
+                FieldData fieldData = new FieldData(constantPool.Value(nameIndex) as string,
+                    constantPool.Value(descriptorIndex) as string,
+                    accessFlags, classData);
                 ushort attributesCount = reader.ReadUInt16();
                 for (int j = 0; j < attributesCount; j++)
                 {
@@ -63,7 +64,9 @@ namespace Test
                     uint attributeLength = reader.ReadUInt32();
                     Attribute attribute = new Attribute(attributeName, attributeLength);
                     attribute.readBytes(reader);
+                    fieldData.Attributes.Add(attribute);
                 }
+                classData.Fields.Add(fieldData);
             }
             ushort methodCount = reader.ReadUInt16();
             for (int i = 0; i < methodCount; i++)
@@ -71,7 +74,9 @@ namespace Test
                 ushort accessFlags = reader.ReadUInt16();
                 ushort nameIndex = reader.ReadUInt16();
                 ushort descriptorIndex = reader.ReadUInt16();
-                Console.WriteLine(constantPool.Value(nameIndex) + " " + constantPool.Value(descriptorIndex));
+                MethodData methodData = new MethodData(constantPool.Value(nameIndex) as string,
+                    constantPool.Value(descriptorIndex) as string,
+                    accessFlags, classData);
                 ushort attributesCount = reader.ReadUInt16();
                 for (int j = 0; j < attributesCount; j++)
                 {
@@ -79,8 +84,11 @@ namespace Test
                     uint attributeLength = reader.ReadUInt32();
                     Attribute attribute = new Attribute(attributeName, attributeLength);
                     attribute.readBytes(reader);
+                    methodData.Attributes.Add(attribute);
                 }
+                classData.Methods.Add(methodData);
             }
+            return classData;
         }
     }
 }
