@@ -1,0 +1,5 @@
+C:\Users\TimD\documents\visual studio 2015\Projects\jvm-cs\jvm-cs\bin\Release\jvm-cs.dll
+C:\Users\TimD\documents\visual studio 2015\Projects\jvm-cs\jvm-cs\bin\Release\jvm-cs.pdb
+C:\Users\TimD\documents\visual studio 2015\Projects\jvm-cs\jvm-cs\obj\Release\jvm-cs.dll
+C:\Users\TimD\documents\visual studio 2015\Projects\jvm-cs\jvm-cs\obj\Release\jvm-cs.pdb
+C:\Users\TimD\documents\visual studio 2015\Projects\jvm-cs\jvm-cs\obj\Release\jvm-cs.csprojResolveAssemblyReference.cache

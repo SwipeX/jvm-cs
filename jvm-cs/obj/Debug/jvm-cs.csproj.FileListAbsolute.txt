@@ -1,0 +1,5 @@
+c:\users\timd\documents\visual studio 2015\Projects\jvm-cs\jvm-cs\bin\Debug\jvm-cs.dll
+c:\users\timd\documents\visual studio 2015\Projects\jvm-cs\jvm-cs\bin\Debug\jvm-cs.pdb
+c:\users\timd\documents\visual studio 2015\Projects\jvm-cs\jvm-cs\obj\Debug\jvm-cs.dll
+c:\users\timd\documents\visual studio 2015\Projects\jvm-cs\jvm-cs\obj\Debug\jvm-cs.pdb
+C:\Users\TimD\documents\visual studio 2015\Projects\jvm-cs\jvm-cs\obj\Debug\jvm-cs.csprojResolveAssemblyReference.cache
