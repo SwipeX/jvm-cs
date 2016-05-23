@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace jvm_cs
 {
-    internal class ConstantPool
+    public class ConstantPool
     {
         private ConstantPoolEntry[] _entries;
         private int _size;
@@ -32,26 +32,26 @@ namespace jvm_cs
                     case Opcodes.FLOAT:
                     case Opcodes.NAME_TYPE:
                     case Opcodes.INDY:
-                        _entries[i] = new ConstantPoolEntry((int)reader.BaseStream.Position, tag, reader.ReadBytes(4));
+                        _entries[i] = new ConstantPoolEntry((int) reader.BaseStream.Position, tag, reader.ReadBytes(4));
                         break;
 
                     case Opcodes.LONG:
                     case Opcodes.DOUBLE:
-                        _entries[i] = new ConstantPoolEntry((int)reader.BaseStream.Position, tag, reader.ReadBytes(8));
+                        _entries[i] = new ConstantPoolEntry((int) reader.BaseStream.Position, tag, reader.ReadBytes(8));
                         ++i;
                         break;
 
                     case Opcodes.UTF8:
-                        _entries[i] = new ConstantPoolEntry((int)reader.BaseStream.Position, tag,
+                        _entries[i] = new ConstantPoolEntry((int) reader.BaseStream.Position, tag,
                             reader.ReadBytes(reader.ReadUInt16()));
                         break;
 
                     case Opcodes.HANDLE:
-                        _entries[i] = new ConstantPoolEntry((int)reader.BaseStream.Position, tag, reader.ReadBytes(3));
+                        _entries[i] = new ConstantPoolEntry((int) reader.BaseStream.Position, tag, reader.ReadBytes(3));
                         break;
 
                     default:
-                        _entries[i] = new ConstantPoolEntry((int)reader.BaseStream.Position, tag, reader.ReadBytes(2));
+                        _entries[i] = new ConstantPoolEntry((int) reader.BaseStream.Position, tag, reader.ReadBytes(2));
                         break;
                 }
             }
@@ -68,10 +68,10 @@ namespace jvm_cs
                     case Opcodes.IMETH:
                     case Opcodes.METH:
                     case Opcodes.FIELD:
-                        uint index1 = DataReader.ReadUInt16(new[] { cpe.Bytes[0], cpe.Bytes[1] });
-                        uint index2 = DataReader.ReadUInt16(new[] { cpe.Bytes[2], cpe.Bytes[3] });
-                        string Class = (string)Value(index1);
-                        string desc = (string)Value(index2);
+                        uint index1 = DataReader.ReadUInt16(new[] {cpe.Bytes[0], cpe.Bytes[1]});
+                        uint index2 = DataReader.ReadUInt16(new[] {cpe.Bytes[2], cpe.Bytes[3]});
+                        string Class = (string) Value(index1);
+                        string desc = (string) Value(index2);
                         cpe.Value = Class + "." + desc;
                         break;
 
@@ -100,8 +100,8 @@ namespace jvm_cs
 
                     case Opcodes.HANDLE:
                         byte a = cpe.Bytes[0];
-                        ushort b = DataReader.ReadUInt16(new[] { cpe.Bytes[1], cpe.Bytes[2] });
-                        cpe.Value = new int[] { a, b };
+                        ushort b = DataReader.ReadUInt16(new[] {cpe.Bytes[1], cpe.Bytes[2]});
+                        cpe.Value = new int[] {a, b};
                         break;
 
                     case Opcodes.CLASS:

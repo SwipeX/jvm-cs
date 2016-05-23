@@ -1,4 +1,5 @@
 ﻿using jvm_cs;
+using jvm_cs.core;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -55,19 +56,19 @@ namespace Test
                 ushort nameIndex = reader.ReadUInt16();
                 ushort descriptorIndex = reader.ReadUInt16();
                 FieldData fieldData = new FieldData(constantPool.Value(nameIndex) as string,
-                    constantPool.Value(descriptorIndex) as string,
-                    accessFlags, classData);
+                    constantPool.Value(descriptorIndex) as string, accessFlags, classData);
                 ushort attributesCount = reader.ReadUInt16();
                 for (int j = 0; j < attributesCount; j++)
                 {
                     string attributeName = (string)constantPool.Value(reader.ReadUInt16());
                     uint attributeLength = reader.ReadUInt32();
                     Attribute attribute = new Attribute(attributeName, attributeLength);
-                    attribute.readBytes(reader);
+                    attribute.ReadBytes(reader);
                     fieldData.Attributes.Add(attribute);
                 }
                 classData.Fields.Add(fieldData);
             }
+
             ushort methodCount = reader.ReadUInt16();
             for (int i = 0; i < methodCount; i++)
             {
@@ -75,18 +76,29 @@ namespace Test
                 ushort nameIndex = reader.ReadUInt16();
                 ushort descriptorIndex = reader.ReadUInt16();
                 MethodData methodData = new MethodData(constantPool.Value(nameIndex) as string,
-                    constantPool.Value(descriptorIndex) as string,
-                    accessFlags, classData);
+                    constantPool.Value(descriptorIndex) as string, accessFlags, classData);
                 ushort attributesCount = reader.ReadUInt16();
                 for (int j = 0; j < attributesCount; j++)
                 {
                     string attributeName = (string)constantPool.Value(reader.ReadUInt16());
                     uint attributeLength = reader.ReadUInt32();
-                    Attribute attribute = new Attribute(attributeName, attributeLength);
-                    attribute.readBytes(reader);
+                    Attribute attribute = attributeName.Equals("Code")
+                        ? new CodeAttribute(attributeName, attributeLength, methodData)
+                        : new Attribute(attributeName, attributeLength);
+                    attribute.ReadBytes(reader);
                     methodData.Attributes.Add(attribute);
                 }
                 classData.Methods.Add(methodData);
+            }
+
+            ushort attributeCount = reader.ReadUInt16();
+            for (int i = 0; i < attributeCount; i++)
+            {
+                string attributeName = (string)constantPool.Value(reader.ReadUInt16());
+                uint attributeLength = reader.ReadUInt32();
+                Attribute attribute = new Attribute(attributeName, attributeLength);
+                attribute.ReadBytes(reader);
+                classData.Attribues.Add(attribute);
             }
             return classData;
         }
