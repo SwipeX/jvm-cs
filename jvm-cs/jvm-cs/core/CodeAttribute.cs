@@ -29,8 +29,8 @@ namespace jvm_cs.core
                 previous = instruction;
                 _owner.Instructions.Add(instruction);
             }
-            ushort exceptionTableCount = reader.ReadUInt16();
-            for (int i = 0; i < exceptionTableCount; i++)
+            ushort exceptionCount = reader.ReadUInt16();
+            for (int i = 0; i < exceptionCount; i++)
             {
                 ushort startPc = reader.ReadUInt16();
                 ushort endPc = reader.ReadUInt16();
