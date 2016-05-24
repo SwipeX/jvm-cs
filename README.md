@@ -1,2 +1,2 @@
 # jvm-cs
-C# bytecode library
+C# bytecode parsing library
