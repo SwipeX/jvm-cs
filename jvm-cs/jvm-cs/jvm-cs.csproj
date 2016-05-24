@@ -41,17 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="core\Attribute.cs" />
-    <Compile Include="core\ClassData.cs" />
-    <Compile Include="core\CodeAttribute.cs" />
-    <Compile Include="core\Instruction.cs" />
-    <Compile Include="io\ClassReader.cs" />
-    <Compile Include="io\ConstantPool.cs" />
-    <Compile Include="io\ConstantPoolEntry.cs" />
-    <Compile Include="io\DataReader.cs" />
-    <Compile Include="core\FieldData.cs" />
-    <Compile Include="io\JarFile.cs" />
-    <Compile Include="core\MethodData.cs" />
+    <Compile Include="Attribute.cs" />
+    <Compile Include="ClassData.cs" />
+    <Compile Include="ClassReader.cs" />
+    <Compile Include="ConstantPool.cs" />
+    <Compile Include="ConstantPoolEntry.cs" />
+    <Compile Include="DataReader.cs" />
+    <Compile Include="FieldData.cs" />
+    <Compile Include="JarFile.cs" />
+    <Compile Include="MethodData.cs" />
     <Compile Include="Opcodes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

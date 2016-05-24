@@ -9,7 +9,6 @@ namespace jvm_cs
 {
     public class ClassData
     {
-        public List<Attribute> Attribues { get; }
         public List<FieldData> Fields { get; }
         public List<MethodData> Methods { get; }
         public List<string> Interfaces { get; }
