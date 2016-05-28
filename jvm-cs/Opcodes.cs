@@ -75,132 +75,132 @@ namespace jvm_cs
         public const int INVOKE_DYNAMIC = 18;
         // versions
 
-        private int V1_1 = 3 << 16 | 45;
-        private int V1_2 = 0 << 16 | 46;
-        private int V1_3 = 0 << 16 | 47;
-        private int V1_4 = 0 << 16 | 48;
-        private int V1_5 = 0 << 16 | 49;
-        private int V1_6 = 0 << 16 | 50;
-        private int V1_7 = 0 << 16 | 51;
-        private int V1_8 = 0 << 16 | 52;
+        public static int V1_1 = 3 << 16 | 45;
+        public static int V1_2 = 0 << 16 | 46;
+        public static int V1_3 = 0 << 16 | 47;
+        public static int V1_4 = 0 << 16 | 48;
+        public static int V1_5 = 0 << 16 | 49;
+        public static int V1_6 = 0 << 16 | 50;
+        public static int V1_7 = 0 << 16 | 51;
+        public static int V1_8 = 0 << 16 | 52;
 
-        // access flags
+        // Access flags
 
-        private int ACC_PUBLIC = 0x0001; // class, field, method
-        private int ACC_PRIVATE = 0x0002; // class, field, method
-        private int ACC_PROTECTED = 0x0004; // class, field, method
-        private int ACC_const = 0x0008; // field, method
-        private int ACC_FINAL = 0x0010; // class, field, method, parameter
-        private int ACC_SUPER = 0x0020; // class
-        private int ACC_SYNCHRONIZED = 0x0020; // method
-        private int ACC_VOLATILE = 0x0040; // field
-        private int ACC_BRIDGE = 0x0040; // method
-        private int ACC_VARARGS = 0x0080; // method
-        private int ACC_TRANSIENT = 0x0080; // field
-        private int ACC_NATIVE = 0x0100; // method
-        private int ACC_INTERFACE = 0x0200; // class
-        private int ACC_ABSTRACT = 0x0400; // class, method
-        private int ACC_STRICT = 0x0800; // method
-        private int ACC_SYNTHETIC = 0x1000; // class, field, method, parameter
-        private int ACC_ANNOTATION = 0x2000; // class
-        private int ACC_ENUM = 0x4000; // class(?) field inner
-        private int ACC_MANDATED = 0x8000; // parameter
+        public static int ACC_PUBLIC = 0x0001; // class, field, method
+        public static int ACC_STATIC = 0x0002; // class, field, method
+        public static int ACC_PROTECTED = 0x0004; // class, field, method
+        public static int ACC_const = 0x0008; // field, method
+        public static int ACC_FINAL = 0x0010; // class, field, method, parameter
+        public static int ACC_SUPER = 0x0020; // class
+        public static int ACC_SYNCHRONIZED = 0x0020; // method
+        public static int ACC_VOLATILE = 0x0040; // field
+        public static int ACC_BRIDGE = 0x0040; // method
+        public static int ACC_VARARGS = 0x0080; // method
+        public static int ACC_TRANSIENT = 0x0080; // field
+        public static int ACC_NATIVE = 0x0100; // method
+        public static int ACC_INTERFACE = 0x0200; // class
+        public static int ACC_ABSTRACT = 0x0400; // class, method
+        public static int ACC_STRICT = 0x0800; // method
+        public static int ACC_SYNTHETIC = 0x1000; // class, field, method, parameter
+        public static int ACC_ANNOTATION = 0x2000; // class
+        public static int ACC_ENUM = 0x4000; // class(?) field inner
+        public static int ACC_MANDATED = 0x8000; // parameter
 
-        // ASM specific pseudo access flags
+        // ASM specific pseudo Access flags
 
-        private int ACC_DEPRECATED = 0x20000; // class, field, method
+        public static int ACC_DEPRECATED = 0x20000; // class, field, method
 
         // types for NEWARRAY
 
-        private int T_BOOLEAN = 4;
-        private int T_CHAR = 5;
-        private int T_FLOAT = 6;
-        private int T_DOUBLE = 7;
-        private int T_BYTE = 8;
-        private int T_SHORT = 9;
-        private int T_INT = 10;
-        private int T_LONG = 11;
+        public static int T_BOOLEAN = 4;
+        public static int T_CHAR = 5;
+        public static int T_FLOAT = 6;
+        public static int T_DOUBLE = 7;
+        public static int T_BYTE = 8;
+        public static int T_SHORT = 9;
+        public static int T_INT = 10;
+        public static int T_LONG = 11;
 
         // tags for Handle
 
-        private int H_GETFIELD = 1;
-        private int H_GETconst = 2;
-        private int H_PUTFIELD = 3;
-        private int H_PUTconst = 4;
-        private int H_INVOKEVIRTUAL = 5;
-        private int H_INVOKEconst = 6;
-        private int H_INVOKESPECIAL = 7;
-        private int H_NEWINVOKESPECIAL = 8;
-        private int H_INVOKEINTERFACE = 9;
+        public static int H_GETFIELD = 1;
+        public static int H_GETconst = 2;
+        public static int H_PUTFIELD = 3;
+        public static int H_PUTconst = 4;
+        public static int H_INVOKEVIRTUAL = 5;
+        public static int H_INVOKEconst = 6;
+        public static int H_INVOKESPECIAL = 7;
+        public static int H_NEWINVOKESPECIAL = 8;
+        public static int H_INVOKEINTERFACE = 9;
 
         // stack map frame types
 
         /**
          * Represents an expanded frame. See {@link ClassReader#EXPAND_FRAMES}.
          */
-        private int F_NEW = -1;
+        public static int F_NEW = -1;
 
         /**
          * Represents a compressed frame with complete frame data.
          */
-        private int F_FULL = 0;
+        public static int F_FULL = 0;
 
         /**
          * Represents a compressed frame where locals are the same as the locals in
          * the previous frame, except that additional 1-3 locals are defined, and
          * with an empty stack.
          */
-        private int F_APPEND = 1;
+        public static int F_APPEND = 1;
 
         /**
          * Represents a compressed frame where locals are the same as the locals in
          * the previous frame, except that the last 1-3 locals are absent and with
          * an empty stack.
          */
-        private int F_CHOP = 2;
+        public static int F_CHOP = 2;
 
         /**
          * Represents a compressed frame with exactly the same locals as the
          * previous frame and with an empty stack.
          */
-        private int F_SAME = 3;
+        public static int F_SAME = 3;
 
         /**
          * Represents a compressed frame with exactly the same locals as the
          * previous frame and with a single value on the stack.
          */
-        private int F_SAME1 = 4;
+        public static int F_SAME1 = 4;
 
         // opcodes // visit method (- = idem)
 
-        private int NOP = 0; // visitInsn
-        private int ACONST_NULL = 1; // -
-        private int ICONST_M1 = 2; // -
-        private int ICONST_0 = 3; // -
-        private int ICONST_1 = 4; // -
-        private int ICONST_2 = 5; // -
-        private int ICONST_3 = 6; // -
-        private int ICONST_4 = 7; // -
-        private int ICONST_5 = 8; // -
-        private int LCONST_0 = 9; // -
-        private int LCONST_1 = 10; // -
-        private int FCONST_0 = 11; // -
-        private int FCONST_1 = 12; // -
-        private int FCONST_2 = 13; // -
-        private int DCONST_0 = 14; // -
-        private int DCONST_1 = 15; // -
-        private int BIPUSH = 16; // visitIntInsn
-        private int SIPUSH = 17; // -
-        private int LDC = 18; // visitLdcInsn
+        public static int NOP = 0; // visitInsn
+        public static int ACONST_NULL = 1; // -
+        public static int ICONST_M1 = 2; // -
+        public static int ICONST_0 = 3; // -
+        public static int ICONST_1 = 4; // -
+        public static int ICONST_2 = 5; // -
+        public static int ICONST_3 = 6; // -
+        public static int ICONST_4 = 7; // -
+        public static int ICONST_5 = 8; // -
+        public static int LCONST_0 = 9; // -
+        public static int LCONST_1 = 10; // -
+        public static int FCONST_0 = 11; // -
+        public static int FCONST_1 = 12; // -
+        public static int FCONST_2 = 13; // -
+        public static int DCONST_0 = 14; // -
+        public static int DCONST_1 = 15; // -
+        public static int BIPUSH = 16; // visitIntInsn
+        public static int SIPUSH = 17; // -
+        public static int LDC = 18; // visitLdcInsn
 
         // int LDC_W = 19; // -
         // int LDC2_W = 20; // -
-        private int ILOAD = 21; // visitVarInsn
+        public static int ILOAD = 21; // visitVarInsn
 
-        private int LLOAD = 22; // -
-        private int FLOAD = 23; // -
-        private int DLOAD = 24; // -
-        private int ALOAD = 25; // -
+        public static int LLOAD = 22; // -
+        public static int FLOAD = 23; // -
+        public static int DLOAD = 24; // -
+        public static int ALOAD = 25; // -
 
         // int ILOAD_0 = 26; // -
         // int ILOAD_1 = 27; // -
@@ -222,20 +222,20 @@ namespace jvm_cs
         // int ALOAD_1 = 43; // -
         // int ALOAD_2 = 44; // -
         // int ALOAD_3 = 45; // -
-        private int IALOAD = 46; // visitInsn
+        public static int IALOAD = 46; // visitInsn
 
-        private int LALOAD = 47; // -
-        private int FALOAD = 48; // -
-        private int DALOAD = 49; // -
-        private int AALOAD = 50; // -
-        private int BALOAD = 51; // -
-        private int CALOAD = 52; // -
-        private int SALOAD = 53; // -
-        private int ISTORE = 54; // visitVarInsn
-        private int LSTORE = 55; // -
-        private int FSTORE = 56; // -
-        private int DSTORE = 57; // -
-        private int ASTORE = 58; // -
+        public static int LALOAD = 47; // -
+        public static int FALOAD = 48; // -
+        public static int DALOAD = 49; // -
+        public static int AALOAD = 50; // -
+        public static int BALOAD = 51; // -
+        public static int CALOAD = 52; // -
+        public static int SALOAD = 53; // -
+        public static int ISTORE = 54; // visitVarInsn
+        public static int LSTORE = 55; // -
+        public static int FSTORE = 56; // -
+        public static int DSTORE = 57; // -
+        public static int ASTORE = 58; // -
 
         // int ISTORE_0 = 59; // -
         // int ISTORE_1 = 60; // -
@@ -257,130 +257,130 @@ namespace jvm_cs
         // int ASTORE_1 = 76; // -
         // int ASTORE_2 = 77; // -
         // int ASTORE_3 = 78; // -
-        private int IASTORE = 79; // visitInsn
+        public static int IASTORE = 79; // visitInsn
 
-        private int LASTORE = 80; // -
-        private int FASTORE = 81; // -
-        private int DASTORE = 82; // -
-        private int AASTORE = 83; // -
-        private int BASTORE = 84; // -
-        private int CASTORE = 85; // -
-        private int SASTORE = 86; // -
-        private int POP = 87; // -
-        private int POP2 = 88; // -
-        private int DUP = 89; // -
-        private int DUP_X1 = 90; // -
-        private int DUP_X2 = 91; // -
-        private int DUP2 = 92; // -
-        private int DUP2_X1 = 93; // -
-        private int DUP2_X2 = 94; // -
-        private int SWAP = 95; // -
-        private int IADD = 96; // -
-        private int LADD = 97; // -
-        private int FADD = 98; // -
-        private int DADD = 99; // -
-        private int ISUB = 100; // -
-        private int LSUB = 101; // -
-        private int FSUB = 102; // -
-        private int DSUB = 103; // -
-        private int IMUL = 104; // -
-        private int LMUL = 105; // -
-        private int FMUL = 106; // -
-        private int DMUL = 107; // -
-        private int IDIV = 108; // -
-        private int LDIV = 109; // -
-        private int FDIV = 110; // -
-        private int DDIV = 111; // -
-        private int IREM = 112; // -
-        private int LREM = 113; // -
-        private int FREM = 114; // -
-        private int DREM = 115; // -
-        private int INEG = 116; // -
-        private int LNEG = 117; // -
-        private int FNEG = 118; // -
-        private int DNEG = 119; // -
-        private int ISHL = 120; // -
-        private int LSHL = 121; // -
-        private int ISHR = 122; // -
-        private int LSHR = 123; // -
-        private int IUSHR = 124; // -
-        private int LUSHR = 125; // -
-        private int IAND = 126; // -
-        private int LAND = 127; // -
-        private int IOR = 128; // -
-        private int LOR = 129; // -
-        private int IXOR = 130; // -
-        private int LXOR = 131; // -
-        private int IINC = 132; // visitIincInsn
-        private int I2L = 133; // visitInsn
-        private int I2F = 134; // -
-        private int I2D = 135; // -
-        private int L2I = 136; // -
-        private int L2F = 137; // -
-        private int L2D = 138; // -
-        private int F2I = 139; // -
-        private int F2L = 140; // -
-        private int F2D = 141; // -
-        private int D2I = 142; // -
-        private int D2L = 143; // -
-        private int D2F = 144; // -
-        private int I2B = 145; // -
-        private int I2C = 146; // -
-        private int I2S = 147; // -
-        private int LCMP = 148; // -
-        private int FCMPL = 149; // -
-        private int FCMPG = 150; // -
-        private int DCMPL = 151; // -
-        private int DCMPG = 152; // -
-        private int IFEQ = 153; // visitJumpInsn
-        private int IFNE = 154; // -
-        private int IFLT = 155; // -
-        private int IFGE = 156; // -
-        private int IFGT = 157; // -
-        private int IFLE = 158; // -
-        private int IF_ICMPEQ = 159; // -
-        private int IF_ICMPNE = 160; // -
-        private int IF_ICMPLT = 161; // -
-        private int IF_ICMPGE = 162; // -
-        private int IF_ICMPGT = 163; // -
-        private int IF_ICMPLE = 164; // -
-        private int IF_ACMPEQ = 165; // -
-        private int IF_ACMPNE = 166; // -
-        private int GOTO = 167; // -
-        private int JSR = 168; // -
-        private int RET = 169; // visitVarInsn
-        private int TABLESWITCH = 170; // visiTableSwitchInsn
-        private int LOOKUPSWITCH = 171; // visitLookupSwitch
-        private int IRETURN = 172; // visitInsn
-        private int LRETURN = 173; // -
-        private int FRETURN = 174; // -
-        private int DRETURN = 175; // -
-        private int ARETURN = 176; // -
-        private int RETURN = 177; // -
-        private int GETconst = 178; // visitFieldInsn
-        private int PUTconst = 179; // -
-        private int GETFIELD = 180; // -
-        private int PUTFIELD = 181; // -
-        private int INVOKEVIRTUAL = 182; // visitMethodInsn
-        private int INVOKESPECIAL = 183; // -
-        private int INVOKEconst = 184; // -
-        private int INVOKEINTERFACE = 185; // -
-        private int INVOKEDYNAMIC = 186; // visitInvokeDynamicInsn
-        private int NEW = 187; // visitTypeInsn
-        private int NEWARRAY = 188; // visitIntInsn
-        private int ANEWARRAY = 189; // visitTypeInsn
-        private int ARRAYLENGTH = 190; // visitInsn
-        private int ATHROW = 191; // -
-        private int CHECKCAST = 192; // visitTypeInsn
-        private int INSTANCEOF = 193; // -
-        private int MONITORENTER = 194; // visitInsn
-        private int MONITOREXIT = 195; // -
+        public static int LASTORE = 80; // -
+        public static int FASTORE = 81; // -
+        public static int DASTORE = 82; // -
+        public static int AASTORE = 83; // -
+        public static int BASTORE = 84; // -
+        public static int CASTORE = 85; // -
+        public static int SASTORE = 86; // -
+        public static int POP = 87; // -
+        public static int POP2 = 88; // -
+        public static int DUP = 89; // -
+        public static int DUP_X1 = 90; // -
+        public static int DUP_X2 = 91; // -
+        public static int DUP2 = 92; // -
+        public static int DUP2_X1 = 93; // -
+        public static int DUP2_X2 = 94; // -
+        public static int SWAP = 95; // -
+        public static int IADD = 96; // -
+        public static int LADD = 97; // -
+        public static int FADD = 98; // -
+        public static int DADD = 99; // -
+        public static int ISUB = 100; // -
+        public static int LSUB = 101; // -
+        public static int FSUB = 102; // -
+        public static int DSUB = 103; // -
+        public static int IMUL = 104; // -
+        public static int LMUL = 105; // -
+        public static int FMUL = 106; // -
+        public static int DMUL = 107; // -
+        public static int IDIV = 108; // -
+        public static int LDIV = 109; // -
+        public static int FDIV = 110; // -
+        public static int DDIV = 111; // -
+        public static int IREM = 112; // -
+        public static int LREM = 113; // -
+        public static int FREM = 114; // -
+        public static int DREM = 115; // -
+        public static int INEG = 116; // -
+        public static int LNEG = 117; // -
+        public static int FNEG = 118; // -
+        public static int DNEG = 119; // -
+        public static int ISHL = 120; // -
+        public static int LSHL = 121; // -
+        public static int ISHR = 122; // -
+        public static int LSHR = 123; // -
+        public static int IUSHR = 124; // -
+        public static int LUSHR = 125; // -
+        public static int IAND = 126; // -
+        public static int LAND = 127; // -
+        public static int IOR = 128; // -
+        public static int LOR = 129; // -
+        public static int IXOR = 130; // -
+        public static int LXOR = 131; // -
+        public static int IINC = 132; // visitIincInsn
+        public static int I2L = 133; // visitInsn
+        public static int I2F = 134; // -
+        public static int I2D = 135; // -
+        public static int L2I = 136; // -
+        public static int L2F = 137; // -
+        public static int L2D = 138; // -
+        public static int F2I = 139; // -
+        public static int F2L = 140; // -
+        public static int F2D = 141; // -
+        public static int D2I = 142; // -
+        public static int D2L = 143; // -
+        public static int D2F = 144; // -
+        public static int I2B = 145; // -
+        public static int I2C = 146; // -
+        public static int I2S = 147; // -
+        public static int LCMP = 148; // -
+        public static int FCMPL = 149; // -
+        public static int FCMPG = 150; // -
+        public static int DCMPL = 151; // -
+        public static int DCMPG = 152; // -
+        public static int IFEQ = 153; // visitJumpInsn
+        public static int IFNE = 154; // -
+        public static int IFLT = 155; // -
+        public static int IFGE = 156; // -
+        public static int IFGT = 157; // -
+        public static int IFLE = 158; // -
+        public static int IF_ICMPEQ = 159; // -
+        public static int IF_ICMPNE = 160; // -
+        public static int IF_ICMPLT = 161; // -
+        public static int IF_ICMPGE = 162; // -
+        public static int IF_ICMPGT = 163; // -
+        public static int IF_ICMPLE = 164; // -
+        public static int IF_ACMPEQ = 165; // -
+        public static int IF_ACMPNE = 166; // -
+        public static int GOTO = 167; // -
+        public static int JSR = 168; // -
+        public static int RET = 169; // visitVarInsn
+        public static int TABLESWITCH = 170; // visiTableSwitchInsn
+        public static int LOOKUPSWITCH = 171; // visitLookupSwitch
+        public static int IRETURN = 172; // visitInsn
+        public static int LRETURN = 173; // -
+        public static int FRETURN = 174; // -
+        public static int DRETURN = 175; // -
+        public static int ARETURN = 176; // -
+        public static int RETURN = 177; // -
+        public static int GETconst = 178; // visitFieldInsn
+        public static int PUTconst = 179; // -
+        public static int GETFIELD = 180; // -
+        public static int PUTFIELD = 181; // -
+        public static int INVOKEVIRTUAL = 182; // visitMethodInsn
+        public static int INVOKESPECIAL = 183; // -
+        public static int INVOKEconst = 184; // -
+        public static int INVOKEINTERFACE = 185; // -
+        public static int INVOKEDYNAMIC = 186; // visitInvokeDynamicInsn
+        public static int NEW = 187; // visitTypeInsn
+        public static int NEWARRAY = 188; // visitIntInsn
+        public static int ANEWARRAY = 189; // visitTypeInsn
+        public static int ARRAYLENGTH = 190; // visitInsn
+        public static int ATHROW = 191; // -
+        public static int CHECKCAST = 192; // visitTypeInsn
+        public static int INSTANCEOF = 193; // -
+        public static int MONITORENTER = 194; // visitInsn
+        public static int MONITOREXIT = 195; // -
 
         // int WIDE = 196; // NOT VISITED
-        private int MULTIANEWARRAY = 197; // visitMultiANewArrayInsn
+        public static int MULTIANEWARRAY = 197; // visitMultiANewArrayInsn
 
-        private int IFNULL = 198; // visitJumpInsn
-        private int IFNONNULL = 199; // -
+        public static int IFNULL = 198; // visitJumpInsn
+        public static int IFNONNULL = 199; // -
         // int GOTO_W = 200; // -
         // int JSR_W = 201; // -
     }

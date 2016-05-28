@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace jvm_cs.core
+﻿namespace jvm_cs.core.instruction
 {
     public class Instruction
     {
@@ -17,12 +11,12 @@ namespace jvm_cs.core
             Opcode = opcode;
         }
 
-        public bool hasNext()
+        public bool HasNext()
         {
             return Next != null;
         }
 
-        public bool hasPrevious()
+        public bool HasPrevious()
         {
             return Previous != null;
         }

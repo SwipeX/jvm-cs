@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using jvm_cs.core.instruction;
 
 namespace jvm_cs
 {
