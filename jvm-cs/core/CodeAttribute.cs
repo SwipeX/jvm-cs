@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using jvm_cs.core.instruction;
@@ -21,15 +23,7 @@ namespace jvm_cs.core
             _owner.MaxStack = reader.ReadUInt16();
             _owner.MaxLocals = reader.ReadUInt16();
             uint codeLength = reader.ReadUInt32();
-            byte[] opcodeArray = reader.ReadBytes((int)codeLength);
-            Instruction previous = null;
-            foreach (byte opcode in opcodeArray)
-            {
-                Instruction instruction = new Instruction(opcode) { Previous = previous };
-                if (previous != null) { previous.Next = instruction; }
-                previous = instruction;
-                _owner.Instructions.Add(instruction);
-            }
+            ProcessCode(reader.ReadBytes((int) codeLength));
             ushort exceptionCount = reader.ReadUInt16();
             for (int i = 0; i < exceptionCount; i++)
             {
@@ -43,7 +37,38 @@ namespace jvm_cs.core
             {
                 ushort nameIndex = reader.ReadUInt16();
                 uint length = reader.ReadUInt32();
-                reader.ReadBytes((int)length);
+                reader.ReadBytes((int) length);
+            }
+        }
+
+        private void ProcessCode(byte[] data)
+        {
+            DataReader reader = new DataReader(new MemoryStream(data));
+            Instruction previous = null;
+            while (reader.BaseStream.Position != reader.BaseStream.Length)
+            {
+                Instruction instruction = CreateInstruction(reader);
+                instruction.Previous = previous;
+                if (previous != null)
+                {
+                    previous.Next = instruction;
+                }
+                previous = instruction;
+                _owner.Instructions.Add(instruction);
+            }
+        }
+
+        private Instruction CreateInstruction(DataReader reader)
+        {
+            byte opcode = reader.ReadByte();
+            switch (opcode)
+            {
+                case Opcodes.BIPUSH:
+                    return new PushInstruction(opcode, reader.ReadByte());
+                case Opcodes.SIPUSH:
+                    return new PushInstruction(opcode, reader.ReadUInt16());
+                default:
+                    return new Instruction(opcode);
             }
         }
     }
