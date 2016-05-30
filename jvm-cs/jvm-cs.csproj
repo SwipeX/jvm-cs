@@ -47,6 +47,7 @@
     <Compile Include="core\InnerClassData.cs" />
     <Compile Include="core\instruction\IncrementInstruction.cs" />
     <Compile Include="core\instruction\LoadInstruction.cs" />
+    <Compile Include="core\instruction\MemberInstruction.cs" />
     <Compile Include="core\instruction\MethodInstruction.cs" />
     <Compile Include="core\instruction\FieldInstruction.cs" />
     <Compile Include="core\instruction\Instruction.cs" />

@@ -8,14 +8,14 @@ namespace jvm_cs
 {
     public class ConstantPoolEntry
     {
-        private int _index;
+        public int Index { get; }
         public byte Tag { get; set; }
         public byte[] Bytes { get; set; }
         public object Value { get; set; }
 
         public ConstantPoolEntry(int index, byte tag, byte[] value)
         {
-            _index = index;
+            Index = index;
             Tag = tag;
             Bytes = value;
         }

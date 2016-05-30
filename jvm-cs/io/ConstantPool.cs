@@ -1,21 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace jvm_cs
+namespace jvm_cs.io
 {
     public class ConstantPool
     {
-        private ConstantPoolEntry[] _entries;
-        private int _size;
+        private static ConstantPoolEntry[] _entries;
+        private static int _size;
+        public static ConstantPool Instance { get; private set; }
 
         public ConstantPool(int size)
         {
+            Instance = this;
             _size = size;
             _entries = new ConstantPoolEntry[_size];
             _entries[0] = new ConstantPoolEntry(-1, 0, null);
+        }
+
+        public static bool HasEntries()
+        {
+            return _entries != null && _entries.Length > 0;
         }
 
         public void Read(DataReader reader)
@@ -62,6 +67,7 @@ namespace jvm_cs
             ResolveUtf8();
             foreach (ConstantPoolEntry cpe in _entries)
             {
+                if (cpe == null || cpe.Index < 0) continue;
                 switch (cpe.Tag)
                 {
                     case Opcodes.NAME_TYPE:
@@ -70,9 +76,9 @@ namespace jvm_cs
                     case Opcodes.FIELD:
                         uint index1 = DataReader.ReadUInt16(new[] {cpe.Bytes[0], cpe.Bytes[1]});
                         uint index2 = DataReader.ReadUInt16(new[] {cpe.Bytes[2], cpe.Bytes[3]});
-                        string Class = (string) Value(index1);
-                        string desc = (string) Value(index2);
-                        cpe.Value = Class + "." + desc;
+                        string className = (string) Value(index1);
+                        string nameType = (string) Value(index2);
+                        cpe.Value = className + "." + nameType;
                         break;
 
                     case Opcodes.INT:
@@ -119,9 +125,8 @@ namespace jvm_cs
 
         private void ResolveUtf8()
         {
-            foreach (ConstantPoolEntry cpe in _entries)
+            foreach (ConstantPoolEntry cpe in _entries.Where(cpe => cpe != null && cpe.Tag == Opcodes.UTF8))
             {
-                if (cpe.Tag != Opcodes.UTF8) continue;
                 cpe.Value = Encoding.UTF8.GetString(cpe.Bytes);
             }
         }

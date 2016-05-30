@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
+using jvm_cs.io;
 
 namespace jvm_cs
 {
@@ -30,6 +31,7 @@ namespace jvm_cs
             Interfaces = interfaces;
             Fields = new List<FieldData>();
             Methods = new List<MethodData>();
+            Attribues = new List<Attribute>();
             Bytes = bytes;
         }
     }

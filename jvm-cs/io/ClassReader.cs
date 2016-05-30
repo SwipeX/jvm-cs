@@ -3,6 +3,7 @@ using jvm_cs.core;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using jvm_cs.io;
 using Attribute = jvm_cs.Attribute;
 
 namespace Test
@@ -48,7 +49,7 @@ namespace Test
             }
 
             ClassData classData = new ClassData(className, superName, access, constantPool, interfaces, _bytes);
-
+           
             ushort fieldCount = reader.ReadUInt16();
             for (int i = 0; i < fieldCount; i++)
             {

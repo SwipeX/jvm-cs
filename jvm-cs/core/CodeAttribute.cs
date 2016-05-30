@@ -6,6 +6,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using jvm_cs.core.instruction;
+using jvm_cs.io;
 
 namespace jvm_cs.core
 {
@@ -67,6 +68,18 @@ namespace jvm_cs.core
                     return new PushInstruction(opcode, reader.ReadByte());
                 case Opcodes.SIPUSH:
                     return new PushInstruction(opcode, reader.ReadUInt16());
+                case Opcodes.GETFIELD:
+                case Opcodes.PUTFIELD:
+                case Opcodes.GETSTATIC:
+                case Opcodes.PUTSTATIC:
+                case Opcodes.INVOKESPECIAL:
+                case Opcodes.INVOKEVIRTUAL:
+                case Opcodes.INVOKESTATIC:
+                    ushort index = reader.ReadUInt16();
+                    string[] value = ((string)ConstantPool.Instance.Value(index)).Split('.');
+                    string className = value[0];
+                    string[] nameType = value[1].Split(' ');
+                    return new MemberInstruction(opcode, className, nameType[0], nameType[1]);
                 default:
                     return new Instruction(opcode);
             }

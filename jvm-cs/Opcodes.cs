@@ -357,13 +357,13 @@ namespace jvm_cs
         public const byte DRETURN = 175; // -
         public const byte ARETURN = 176; // -
         public const byte RETURN = 177; // -
-        public const byte GETconst = 178; // visitFieldInsn
-        public const byte PUTconst = 179; // -
+        public const byte GETSTATIC = 178; // visitFieldInsn
+        public const byte PUTSTATIC = 179; // -
         public const byte GETFIELD = 180; // -
         public const byte PUTFIELD = 181; // -
         public const byte INVOKEVIRTUAL = 182; // visitMethodInsn
         public const byte INVOKESPECIAL = 183; // -
-        public const byte INVOKEconst = 184; // -
+        public const byte INVOKESTATIC = 184; // -
         public const byte INVOKEINTERFACE = 185; // -
         public const byte INVOKEDYNAMIC = 186; // visitInvokeDynamicInsn
         public const byte NEW = 187; // visitTypeInsn
