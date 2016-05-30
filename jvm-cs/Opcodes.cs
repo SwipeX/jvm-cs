@@ -375,6 +375,7 @@ namespace jvm_cs
         public const byte INSTANCEOF = 193; // -
         public const byte MONITORENTER = 194; // visitInsn
         public const byte MONITOREXIT = 195; // -
+        public const byte WIDE = 196;
                      
         // int WIDE = byte; // NOT VISITED
         public const byte MULTIANEWARRAY = 197; // visitMultiANewArrayInsn

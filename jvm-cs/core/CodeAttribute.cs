@@ -61,13 +61,25 @@ namespace jvm_cs.core
 
         private Instruction CreateInstruction(DataReader reader)
         {
+            bool wide = false;
             byte opcode = reader.ReadByte();
+            if (opcode == Opcodes.WIDE)
+            {
+                wide = true;
+                opcode = reader.ReadByte();
+            }
             switch (opcode)
             {
                 case Opcodes.BIPUSH:
                     return new PushInstruction(opcode, reader.ReadByte());
                 case Opcodes.SIPUSH:
                     return new PushInstruction(opcode, reader.ReadUInt16());
+
+                case Opcodes.INVOKEINTERFACE:
+                    string[] data = readMethod(reader);
+                    byte count = reader.ReadByte();
+                    reader.ReadByte(); //Read the zero that java likes to stick here...
+                    return new MethodInstruction(opcode, data[0], data[1], data[2], count);
                 case Opcodes.GETFIELD:
                 case Opcodes.PUTFIELD:
                 case Opcodes.GETSTATIC:
@@ -75,14 +87,43 @@ namespace jvm_cs.core
                 case Opcodes.INVOKESPECIAL:
                 case Opcodes.INVOKEVIRTUAL:
                 case Opcodes.INVOKESTATIC:
-                    ushort index = reader.ReadUInt16();
-                    string[] value = ((string)ConstantPool.Instance.Value(index)).Split('.');
-                    string className = value[0];
-                    string[] nameType = value[1].Split(' ');
-                    return new MemberInstruction(opcode, className, nameType[0], nameType[1]);
+                case Opcodes.INVOKEDYNAMIC:
+                    string[] method = readMethod(reader);
+                    if (opcode == Opcodes.INVOKEDYNAMIC)
+                        reader.ReadBytes(2); //read the 0's because java
+                    return new MemberInstruction(opcode, method[0], method[1], method[2]);
+
+                case Opcodes.IINC:
+                    return new IncrementInstruction(opcode, wide ? reader.ReadUInt16() : reader.ReadByte(),
+                        wide ? reader.ReadInt16() : reader.ReadByte());
+
+                case Opcodes.ALOAD:
+                case Opcodes.ILOAD:
+                case Opcodes.FLOAD:
+                case Opcodes.DLOAD:
+                case Opcodes.LLOAD:
+                case Opcodes.ASTORE:
+                case Opcodes.ISTORE:
+                case Opcodes.FSTORE:
+                case Opcodes.DSTORE:
+                case Opcodes.LSTORE:
+                    return new VariableInstruction(opcode, wide ? reader.ReadUInt16() : reader.ReadByte());
+                case Opcodes.CHECKCAST:
+                case Opcodes.ANEWARRAY:
+                    return new TypeInstruction(opcode, ConstantPool.Instance.Value(reader.ReadUInt16()) as string);
+
                 default:
                     return new Instruction(opcode);
             }
+        }
+
+        private string[] readMethod(DataReader reader)
+        {
+            ushort index = reader.ReadUInt16();
+            string[] value = ((string) ConstantPool.Instance.Value(index)).Split('.');
+            string className = value[0];
+            string[] nameType = value[1].Split(' ');
+            return new[] {className, nameType[0], nameType[1]};
         }
     }
 }

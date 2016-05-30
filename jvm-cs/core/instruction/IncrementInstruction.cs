@@ -11,7 +11,7 @@ namespace jvm_cs.core.instruction
         public int VarIndex;//IINC
         public int Value;
 
-        public IncrementInstruction(int varIndex, int value, byte opcode) : base(opcode)
+        public IncrementInstruction(byte opcode, int varIndex, int value) : base(opcode)
         {
             VarIndex = varIndex;
             Value = value;

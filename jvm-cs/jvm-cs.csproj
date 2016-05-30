@@ -45,14 +45,13 @@
     <Compile Include="core\ClassData.cs" />
     <Compile Include="core\CodeAttribute.cs" />
     <Compile Include="core\InnerClassData.cs" />
+    <Compile Include="core\instruction\TypeInstruction.cs" />
     <Compile Include="core\instruction\IncrementInstruction.cs" />
-    <Compile Include="core\instruction\LoadInstruction.cs" />
     <Compile Include="core\instruction\MemberInstruction.cs" />
     <Compile Include="core\instruction\MethodInstruction.cs" />
     <Compile Include="core\instruction\FieldInstruction.cs" />
     <Compile Include="core\instruction\Instruction.cs" />
     <Compile Include="core\instruction\PushInstruction.cs" />
-    <Compile Include="core\instruction\TypeInstruction.cs" />
     <Compile Include="core\instruction\VariableInstruction.cs" />
     <Compile Include="io\ClassReader.cs" />
     <Compile Include="io\ConstantPool.cs" />

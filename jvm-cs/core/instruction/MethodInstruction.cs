@@ -8,9 +8,14 @@ namespace jvm_cs.core.instruction
 {
     public class MethodInstruction : MemberInstruction
     {
-        public MethodInstruction(string owner, string name, string desc, byte opcode) : base(owner, name, desc, opcode)
+        public int Count { get; private set; } //used for invokeinterface
+
+        public MethodInstruction(byte opcode, string owner, string name, string desc) : base(opcode, owner, name, desc)
         {
-        
+        }
+        public MethodInstruction(byte opcode, string owner, string name, string desc, int count) : base(opcode, owner, name, desc)
+        {
+            Count = count;
+        }
     }
-}
 }

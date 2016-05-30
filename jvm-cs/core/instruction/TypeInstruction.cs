@@ -8,9 +8,9 @@ namespace jvm_cs.core.instruction
 {
     public class TypeInstruction : Instruction
     {
-        public string Type;
+        public string Type { get; }
 
-        public TypeInstruction(byte opcode, string type) : base(opcode)
+        public TypeInstruction(byte opcode,string type) : base(opcode)
         {
             Type = type;
         }

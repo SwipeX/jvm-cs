@@ -54,6 +54,10 @@ namespace jvm_cs
             return (ushort)((buffer[0] << 8) | buffer[1]);
         }
 
+        public static ushort ReadInt16(byte[] buffer)
+        {
+            return (ushort)((buffer[1] << 8) | buffer[0]);
+        }
         public static float ReadSingle(byte[] buffer)
         {
             return BitConverter.ToSingle(buffer, 0);
