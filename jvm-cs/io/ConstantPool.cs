@@ -37,26 +37,30 @@ namespace jvm_cs.io
                     case Opcodes.FLOAT:
                     case Opcodes.NAME_TYPE:
                     case Opcodes.INDY:
-                        _entries[i] = new ConstantPoolEntry((int) reader.BaseStream.Position, tag, reader.ReadBytes(4));
+                        _entries[i] = new ConstantPoolEntry((int)reader.BaseStream.Position, tag,
+                            reader.ReadBytes(4));
                         break;
 
                     case Opcodes.LONG:
                     case Opcodes.DOUBLE:
-                        _entries[i] = new ConstantPoolEntry((int) reader.BaseStream.Position, tag, reader.ReadBytes(8));
+                        _entries[i] = new ConstantPoolEntry((int)reader.BaseStream.Position, tag,
+                            reader.ReadBytes(8));
                         ++i;
                         break;
 
                     case Opcodes.UTF8:
-                        _entries[i] = new ConstantPoolEntry((int) reader.BaseStream.Position, tag,
+                        _entries[i] = new ConstantPoolEntry((int)reader.BaseStream.Position, tag,
                             reader.ReadBytes(reader.ReadUInt16()));
                         break;
 
                     case Opcodes.HANDLE:
-                        _entries[i] = new ConstantPoolEntry((int) reader.BaseStream.Position, tag, reader.ReadBytes(3));
+                        _entries[i] = new ConstantPoolEntry((int)reader.BaseStream.Position, tag,
+                            reader.ReadBytes(3));
                         break;
 
                     default:
-                        _entries[i] = new ConstantPoolEntry((int) reader.BaseStream.Position, tag, reader.ReadBytes(2));
+                        _entries[i] = new ConstantPoolEntry((int)reader.BaseStream.Position, tag,
+                            reader.ReadBytes(2));
                         break;
                 }
             }
@@ -65,6 +69,7 @@ namespace jvm_cs.io
         public void Resolve()
         {
             ResolveUtf8();
+            int x = 0;
             foreach (ConstantPoolEntry cpe in _entries)
             {
                 if (cpe == null || cpe.Index < 0) continue;
@@ -74,11 +79,17 @@ namespace jvm_cs.io
                     case Opcodes.IMETH:
                     case Opcodes.METH:
                     case Opcodes.FIELD:
-                        uint index1 = DataReader.ReadUInt16(new[] {cpe.Bytes[0], cpe.Bytes[1]});
-                        uint index2 = DataReader.ReadUInt16(new[] {cpe.Bytes[2], cpe.Bytes[3]});
-                        string className = (string) Value(index1);
-                        string nameType = (string) Value(index2);
+                        uint index1 = DataReader.ReadUInt16(new[] { cpe.Bytes[0], cpe.Bytes[1] });
+                        uint index2 = DataReader.ReadUInt16(new[] { cpe.Bytes[2], cpe.Bytes[3] });
+                        string className = (string)Value(index1);
+                        string nameType = (string)Value(index2);
                         cpe.Value = className + "." + nameType;
+                        break;
+
+                    case Opcodes.INDY:
+                        //bootstrap_method_attr_index???
+                        uint i = DataReader.ReadUInt16(new[] { cpe.Bytes[2], cpe.Bytes[3] });
+                        cpe.Value = Value(i);
                         break;
 
                     case Opcodes.INT:
@@ -87,9 +98,6 @@ namespace jvm_cs.io
 
                     case Opcodes.FLOAT:
                         cpe.Value = DataReader.ReadSingle(cpe.Bytes);
-                        break;
-
-                    case Opcodes.INDY:
                         break;
 
                     case Opcodes.LONG:
@@ -105,22 +113,31 @@ namespace jvm_cs.io
                         break;
 
                     case Opcodes.HANDLE:
-                        byte a = cpe.Bytes[0];
-                        ushort b = DataReader.ReadUInt16(new[] {cpe.Bytes[1], cpe.Bytes[2]});
-                        cpe.Value = new int[] {a, b};
+                        byte kind = cpe.Bytes[0];
+                        ushort idx = DataReader.ReadUInt16(new[] { cpe.Bytes[1], cpe.Bytes[2] });
+                        cpe.Value = Value(idx);
                         break;
 
+                    case Opcodes.STR:
+                    case Opcodes.MTYPE:
                     case Opcodes.CLASS:
                         uint index = DataReader.ReadUInt16(cpe.Bytes);
                         cpe.Value = Value(index);
                         break;
                 }
+                Console.WriteLine(x++ + " : " + cpe.Tag + " " + cpe.Value);
             }
         }
 
         public object Value(uint index)
         {
-            return _entries[index].Value;
+            if (index < _entries.Length)
+                return _entries[index].Value;
+            else
+            {
+                Console.WriteLine(index + " requested OOB");
+                return "";
+            }
         }
 
         private void ResolveUtf8()

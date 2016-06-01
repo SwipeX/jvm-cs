@@ -8,7 +8,8 @@ namespace jvm_cs.core.instruction
 {
     public class FieldInstruction : MemberInstruction
     {
-        public FieldInstruction(string owner, string name, string desc, byte opcode) : base(owner, name, desc, opcode)
+        public FieldInstruction(byte opcode, string owner, string name, string desc)
+            : base(opcode, owner, name, desc)
         {
         }
     }

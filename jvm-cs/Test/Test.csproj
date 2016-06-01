@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4012DFD8-1913-4992-A2DB-FA1EDE86DA7A}</ProjectGuid>
+    <ProjectGuid>{920606CF-0C79-4D7A-9838-415FC754B380}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Test</RootNamespace>
@@ -71,7 +71,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\jvm-cs\jvm-cs.csproj">
+    <ProjectReference Include="..\jvm-cs.csproj">
       <Project>{1342BE68-3AF6-48EC-A535-4DA50ADB8947}</Project>
       <Name>jvm-cs</Name>
     </ProjectReference>

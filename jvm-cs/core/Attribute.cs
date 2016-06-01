@@ -18,12 +18,12 @@ namespace jvm_cs
             _length = length;
         }
 
-        public void ReadBytes(DataReader reader)
+        public virtual void ReadBytes(DataReader reader)
         {
             switch (_name)
             {
                 default:
-                    reader.ReadBytes((int)_length);
+                    reader.ReadBytes((int) _length);
                     break;
             }
         }

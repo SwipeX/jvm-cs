@@ -1,10 +1,10 @@
 ﻿using jvm_cs.core;
+using jvm_cs.core.instruction;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using jvm_cs.core.instruction;
 
 namespace jvm_cs
 {
@@ -28,6 +28,7 @@ namespace jvm_cs
             Access = access;
             Owner = owner;
             Attributes = new List<Attribute>();
+            Instructions = new List<Instruction>();
         }
     }
 }

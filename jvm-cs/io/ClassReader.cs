@@ -1,9 +1,9 @@
 ﻿using jvm_cs;
 using jvm_cs.core;
+using jvm_cs.io;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using jvm_cs.io;
 using Attribute = jvm_cs.Attribute;
 
 namespace Test
@@ -36,6 +36,7 @@ namespace Test
             ushort minor = reader.ReadUInt16();
             ushort major = reader.ReadUInt16();
             ushort constantPoolSize = reader.ReadUInt16();
+            Console.WriteLine(constantPoolSize);
             ConstantPool constantPool = new ConstantPool(constantPoolSize);
             constantPool.Read(reader);
             constantPool.Resolve();
@@ -49,7 +50,7 @@ namespace Test
             }
 
             ClassData classData = new ClassData(className, superName, access, constantPool, interfaces, _bytes);
-           
+
             ushort fieldCount = reader.ReadUInt16();
             for (int i = 0; i < fieldCount; i++)
             {
@@ -81,7 +82,7 @@ namespace Test
                 ushort attributesCount = reader.ReadUInt16();
                 for (int j = 0; j < attributesCount; j++)
                 {
-                    string attributeName = (string)constantPool.Value(reader.ReadUInt16());
+                    string attributeName = ((string)constantPool.Value(reader.ReadUInt16())).Trim();
                     uint attributeLength = reader.ReadUInt32();
                     Attribute attribute = attributeName.Equals("Code")
                         ? new CodeAttribute(attributeName, attributeLength, methodData)

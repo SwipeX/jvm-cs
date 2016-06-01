@@ -1,12 +1,12 @@
-﻿using System;
+﻿using jvm_cs.core.instruction;
+using jvm_cs.io;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
-using jvm_cs.core.instruction;
-using jvm_cs.io;
 
 namespace jvm_cs.core
 {
@@ -19,12 +19,12 @@ namespace jvm_cs.core
             _owner = owner;
         }
 
-        public new void ReadBytes(DataReader reader)
+        public override void ReadBytes(DataReader reader)
         {
             _owner.MaxStack = reader.ReadUInt16();
             _owner.MaxLocals = reader.ReadUInt16();
             uint codeLength = reader.ReadUInt32();
-            ProcessCode(reader.ReadBytes((int) codeLength));
+            ProcessCode(reader.ReadBytes((int)codeLength));
             ushort exceptionCount = reader.ReadUInt16();
             for (int i = 0; i < exceptionCount; i++)
             {
@@ -38,7 +38,7 @@ namespace jvm_cs.core
             {
                 ushort nameIndex = reader.ReadUInt16();
                 uint length = reader.ReadUInt32();
-                reader.ReadBytes((int) length);
+                reader.ReadBytes((int)length);
             }
         }
 
@@ -72,6 +72,7 @@ namespace jvm_cs.core
             {
                 case Opcodes.BIPUSH:
                     return new PushInstruction(opcode, reader.ReadByte());
+
                 case Opcodes.SIPUSH:
                     return new PushInstruction(opcode, reader.ReadUInt16());
 
@@ -80,6 +81,7 @@ namespace jvm_cs.core
                     byte count = reader.ReadByte();
                     reader.ReadByte(); //Read the zero that java likes to stick here...
                     return new MethodInstruction(opcode, data[0], data[1], data[2], count);
+
                 case Opcodes.GETFIELD:
                 case Opcodes.PUTFIELD:
                 case Opcodes.GETSTATIC:
@@ -108,6 +110,7 @@ namespace jvm_cs.core
                 case Opcodes.DSTORE:
                 case Opcodes.LSTORE:
                     return new VariableInstruction(opcode, wide ? reader.ReadUInt16() : reader.ReadByte());
+
                 case Opcodes.CHECKCAST:
                 case Opcodes.ANEWARRAY:
                     return new TypeInstruction(opcode, ConstantPool.Instance.Value(reader.ReadUInt16()) as string);
@@ -120,10 +123,10 @@ namespace jvm_cs.core
         private string[] readMethod(DataReader reader)
         {
             ushort index = reader.ReadUInt16();
-            string[] value = ((string) ConstantPool.Instance.Value(index)).Split('.');
+            string[] value = ((string)ConstantPool.Instance.Value(index)).Split('.');
             string className = value[0];
             string[] nameType = value[1].Split(' ');
-            return new[] {className, nameType[0], nameType[1]};
+            return new[] { className, nameType[0], nameType[1] };
         }
     }
 }
