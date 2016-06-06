@@ -24,7 +24,7 @@ namespace jvm_cs.core
             _owner.MaxStack = reader.ReadUInt16();
             _owner.MaxLocals = reader.ReadUInt16();
             uint codeLength = reader.ReadUInt32();
-            ProcessCode(reader.ReadBytes((int)codeLength));
+            ProcessCode(reader.ReadBytes((int) codeLength));
             ushort exceptionCount = reader.ReadUInt16();
             for (int i = 0; i < exceptionCount; i++)
             {
@@ -38,7 +38,7 @@ namespace jvm_cs.core
             {
                 ushort nameIndex = reader.ReadUInt16();
                 uint length = reader.ReadUInt32();
-                reader.ReadBytes((int)length);
+                reader.ReadBytes((int) length);
             }
         }
 
@@ -123,10 +123,8 @@ namespace jvm_cs.core
         private string[] readMethod(DataReader reader)
         {
             ushort index = reader.ReadUInt16();
-            string[] value = ((string)ConstantPool.Instance.Value(index)).Split('.');
-            string className = value[0];
-            string[] nameType = value[1].Split(' ');
-            return new[] { className, nameType[0], nameType[1] };
+            string[] value = (string[]) ConstantPool.Instance.Value(index);
+            return new[] {value[0], value[1], value.Length == 3 ? value[2] : ""};
         }
     }
 }

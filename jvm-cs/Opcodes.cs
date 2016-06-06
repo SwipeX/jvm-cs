@@ -28,7 +28,7 @@ namespace jvm_cs
         /**
          * The type of CONSTANT_Integer constant pool items.
          */
-        public const int INT = 3;
+        public const int INTEGER = 3;
 
         /**
          * The type of CONSTANT_Float constant pool items.

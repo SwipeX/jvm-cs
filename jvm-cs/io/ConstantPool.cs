@@ -33,106 +33,59 @@ namespace jvm_cs.io
                     case Opcodes.FIELD:
                     case Opcodes.METH:
                     case Opcodes.IMETH:
-                    case Opcodes.INT:
+                    case Opcodes.INTEGER:
                     case Opcodes.FLOAT:
                     case Opcodes.NAME_TYPE:
                     case Opcodes.INDY:
-                        _entries[i] = new ConstantPoolEntry((int)reader.BaseStream.Position, tag,
+                        _entries[i] = new ConstantPoolEntry(i, tag,
                             reader.ReadBytes(4));
                         break;
 
                     case Opcodes.LONG:
                     case Opcodes.DOUBLE:
-                        _entries[i] = new ConstantPoolEntry((int)reader.BaseStream.Position, tag,
+                        _entries[i] = new ConstantPoolEntry(i, tag,
                             reader.ReadBytes(8));
                         ++i;
                         break;
 
                     case Opcodes.UTF8:
-                        _entries[i] = new ConstantPoolEntry((int)reader.BaseStream.Position, tag,
+                        _entries[i] = new ConstantPoolEntry(i, tag,
                             reader.ReadBytes(reader.ReadUInt16()));
                         break;
 
                     case Opcodes.HANDLE:
-                        _entries[i] = new ConstantPoolEntry((int)reader.BaseStream.Position, tag,
+                        _entries[i] = new ConstantPoolEntry(i, tag,
                             reader.ReadBytes(3));
                         break;
 
-                    default:
-                        _entries[i] = new ConstantPoolEntry((int)reader.BaseStream.Position, tag,
+                    case Opcodes.CLASS:
+                    case Opcodes.MTYPE:
+                    case Opcodes.STR:
+                        _entries[i] = new ConstantPoolEntry(i, tag,
                             reader.ReadBytes(2));
                         break;
+
+                    default:
+                        Console.WriteLine("Unexpected tag: " + tag);
+                        break;
                 }
             }
-        }
-
-        public void Resolve()
-        {
             ResolveUtf8();
-            int x = 0;
-            foreach (ConstantPoolEntry cpe in _entries)
+            for (int i = 1; i < _size; i++)
             {
-                if (cpe == null || cpe.Index < 0) continue;
-                switch (cpe.Tag)
-                {
-                    case Opcodes.NAME_TYPE:
-                    case Opcodes.IMETH:
-                    case Opcodes.METH:
-                    case Opcodes.FIELD:
-                        uint index1 = DataReader.ReadUInt16(new[] { cpe.Bytes[0], cpe.Bytes[1] });
-                        uint index2 = DataReader.ReadUInt16(new[] { cpe.Bytes[2], cpe.Bytes[3] });
-                        string className = (string)Value(index1);
-                        string nameType = (string)Value(index2);
-                        cpe.Value = className + "." + nameType;
-                        break;
-
-                    case Opcodes.INDY:
-                        //bootstrap_method_attr_index???
-                        uint i = DataReader.ReadUInt16(new[] { cpe.Bytes[2], cpe.Bytes[3] });
-                        cpe.Value = Value(i);
-                        break;
-
-                    case Opcodes.INT:
-                        cpe.Value = DataReader.ReadUInt32(cpe.Bytes);
-                        break;
-
-                    case Opcodes.FLOAT:
-                        cpe.Value = DataReader.ReadSingle(cpe.Bytes);
-                        break;
-
-                    case Opcodes.LONG:
-                        cpe.Value = DataReader.ReadUInt64(cpe.Bytes);
-                        break;
-
-                    case Opcodes.DOUBLE:
-                        cpe.Value = DataReader.ReadDouble(cpe.Bytes);
-                        break;
-
-                    case Opcodes.UTF8:
-                        //already resolved
-                        break;
-
-                    case Opcodes.HANDLE:
-                        byte kind = cpe.Bytes[0];
-                        ushort idx = DataReader.ReadUInt16(new[] { cpe.Bytes[1], cpe.Bytes[2] });
-                        cpe.Value = Value(idx);
-                        break;
-
-                    case Opcodes.STR:
-                    case Opcodes.MTYPE:
-                    case Opcodes.CLASS:
-                        uint index = DataReader.ReadUInt16(cpe.Bytes);
-                        cpe.Value = Value(index);
-                        break;
-                }
-                Console.WriteLine(x++ + " : " + cpe.Tag + " " + cpe.Value);
+                _entries[i].Resolve();
             }
         }
+
 
         public object Value(uint index)
         {
             if (index < _entries.Length)
+            {
+                if (_entries[index].Value == null)
+                    _entries[index].Resolve();
                 return _entries[index].Value;
+            }
             else
             {
                 Console.WriteLine(index + " requested OOB");

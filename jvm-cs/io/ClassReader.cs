@@ -39,7 +39,6 @@ namespace Test
             Console.WriteLine(constantPoolSize);
             ConstantPool constantPool = new ConstantPool(constantPoolSize);
             constantPool.Read(reader);
-            constantPool.Resolve();
             ushort access = reader.ReadUInt16();
             string className = (string)constantPool.Value(reader.ReadUInt16());
             string superName = (string)constantPool.Value(reader.ReadUInt16());
