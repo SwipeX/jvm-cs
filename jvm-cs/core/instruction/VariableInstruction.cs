@@ -8,11 +8,11 @@ namespace jvm_cs.core.instruction
 {
     public class VariableInstruction : Instruction
     {
-        public int Index { get; }
+        public uint VarIndex { get; }
 
-        public VariableInstruction(byte opcode, int index) : base(opcode)
+        public VariableInstruction(byte opcode, int index, uint varIndex) : base(opcode, index)
         {
-            Index = index;
+            VarIndex = varIndex;
         }
     }
 }

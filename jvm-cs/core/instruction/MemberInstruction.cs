@@ -12,7 +12,7 @@ namespace jvm_cs.core.instruction
         public string Name;
         public string Desc;
 
-        public MemberInstruction(byte opcode, string owner, string name, string desc) : base(opcode)
+        public MemberInstruction(byte opcode,  int index,  string owner, string name, string desc) : base(opcode, index)
         {
             this.Owner = owner;
             this.Name = name;

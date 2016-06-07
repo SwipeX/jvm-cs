@@ -45,7 +45,6 @@ namespace jvm_cs
                 case Opcodes.INDY:
                     //bootstrap_method_attr_index???
                     uint i = DataReader.ReadUInt16(new[] {Bytes[2], Bytes[3]});
-                    Console.WriteLine(i);
                     Value = ConstantPool.Instance.Value(i);
                     break;
 

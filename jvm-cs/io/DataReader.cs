@@ -28,10 +28,21 @@ namespace jvm_cs
             return ReadUInt64(ReadBytes(8));
         }
 
+        public override long ReadInt64()
+        {
+            return ReadInt64(ReadBytes(8));
+        }
+
         public static ulong ReadUInt64(byte[] buffer)
         {
-            return (ulong)((buffer[0] << 48) | (buffer[1] << 42) | (buffer[2] << 36)
+            return (ulong) ((buffer[0] << 48) | (buffer[1] << 42) | (buffer[2] << 36)
                             | (buffer[3] << 30) | (buffer[4] << 24) | (buffer[5] << 16) | (buffer[6] << 8) | buffer[7]);
+        }
+
+        public static long ReadInt64(byte[] buffer)
+        {
+            return (long) ((buffer[0] << 48) | (buffer[1] << 42) | (buffer[2] << 36)
+                           | (buffer[3] << 30) | (buffer[4] << 24) | (buffer[5] << 16) | (buffer[6] << 8) | buffer[7]);
         }
 
         public override uint ReadUInt32()
@@ -39,9 +50,19 @@ namespace jvm_cs
             return ReadUInt32(ReadBytes(4));
         }
 
+        public override int ReadInt32()
+        {
+            return ReadInt32(ReadBytes(4));
+        }
+
         public static uint ReadUInt32(byte[] buffer)
         {
-            return (uint)((buffer[0] << 24) | (buffer[1] << 16) | (buffer[2] << 8) | buffer[3]);
+            return (uint) ((buffer[0] << 24) | (buffer[1] << 16) | (buffer[2] << 8) | buffer[3]);
+        }
+
+        public static int ReadInt32(byte[] buffer)
+        {
+            return (buffer[0] << 24) | (buffer[1] << 16) | (buffer[2] << 8) | buffer[3];
         }
 
         public override ushort ReadUInt16()
@@ -49,26 +70,32 @@ namespace jvm_cs
             return ReadUInt16(ReadBytes(2));
         }
 
-        public static ushort ReadUInt16(byte[] buffer)
+        public override short ReadInt16()
         {
-            return (ushort)((buffer[0] << 8) | buffer[1]);
+            return (short) ReadInt16(ReadBytes(2));
         }
 
-        public static ushort ReadInt16(byte[] buffer)
+        public static ushort ReadUInt16(byte[] buffer)
         {
-            return (ushort)((buffer[1] << 8) | buffer[0]);
+            return (ushort) ((buffer[0] << 8) | buffer[1]);
         }
+
+        public static int ReadInt16(byte[] buffer)
+        {
+            return (buffer[0] << 8) | buffer[1];
+        }
+
         public static float ReadSingle(byte[] buffer)
         {
             return BitConverter.ToSingle(buffer, 0);
         }
 
-        public static Double ReadDouble(byte[] buffer)
+        public static double ReadDouble(byte[] buffer)
         {
             return BitConverter.ToDouble(buffer, 0);
         }
 
-        public override Double ReadDouble()
+        public override double ReadDouble()
         {
             return ReadDouble(ReadBytes(8).Reverse().ToArray());
         }

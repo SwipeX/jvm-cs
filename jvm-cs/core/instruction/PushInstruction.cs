@@ -9,7 +9,7 @@ namespace jvm_cs.core.instruction
     public class PushInstruction : Instruction
     {
         public int PushValue;//Bipush,Sipush,Newarray
-        public PushInstruction(byte opcode, int pushValue) : base(opcode)
+        public PushInstruction(byte opcode,  int index,  int pushValue) : base(opcode, index)
         {
             PushValue = pushValue;
         }

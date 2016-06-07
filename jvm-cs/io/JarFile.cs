@@ -4,13 +4,14 @@ using System.Data;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using jvm_cs.core.storage;
 using Test;
 
 namespace jvm_cs
 {
     public class JarFile
     {
-        private ZipArchive _archive;
+        private readonly ZipArchive _archive;
 
         public JarFile(string filePath)
         {
@@ -20,16 +21,16 @@ namespace jvm_cs
 
         private void ReadArchive()
         {
-            foreach (ZipArchiveEntry entry in _archive.Entries)
-            {
+            foreach (ZipArchiveEntry entry in _archive.Entries) {
                 var stream = entry.Open();
                 byte[] bytes;
-                using (var ms = new MemoryStream())
-                {
+                using (var ms = new MemoryStream()) {
                     stream.CopyTo(ms);
                     bytes = ms.ToArray();
                 }
-                new ClassReader(bytes);
+                ClassReader reader = new ClassReader(bytes);
+                ClassData classData = reader.Read();
+                ClassGroup.Classes.Add(classData.Name, classData);
             }
         }
     }

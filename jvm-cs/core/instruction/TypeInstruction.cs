@@ -10,7 +10,7 @@ namespace jvm_cs.core.instruction
     {
         public string Type { get; }
 
-        public TypeInstruction(byte opcode,string type) : base(opcode)
+        public TypeInstruction(byte opcode, int index, string type) : base(opcode, index)
         {
             Type = type;
         }

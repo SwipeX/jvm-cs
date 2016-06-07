@@ -45,6 +45,14 @@
     <Compile Include="core\ClassData.cs" />
     <Compile Include="core\CodeAttribute.cs" />
     <Compile Include="core\InnerClassData.cs" />
+    <Compile Include="core\instruction\BranchInstruction.cs" />
+    <Compile Include="core\instruction\ConstantInstruction.cs" />
+    <Compile Include="core\instruction\ConversionInstruction.cs" />
+    <Compile Include="core\instruction\Instructions.cs" />
+    <Compile Include="core\instruction\LookupSwitchInstruction.cs" />
+    <Compile Include="core\instruction\MathInstruction.cs" />
+    <Compile Include="core\instruction\NumericInstruction.cs" />
+    <Compile Include="core\instruction\TableSwitchInstruction.cs" />
     <Compile Include="core\instruction\TypeInstruction.cs" />
     <Compile Include="core\instruction\IncrementInstruction.cs" />
     <Compile Include="core\instruction\MemberInstruction.cs" />
@@ -53,6 +61,8 @@
     <Compile Include="core\instruction\Instruction.cs" />
     <Compile Include="core\instruction\PushInstruction.cs" />
     <Compile Include="core\instruction\VariableInstruction.cs" />
+    <Compile Include="core\storage\ClassGroup.cs" />
+    <Compile Include="core\Utilities.cs" />
     <Compile Include="io\ClassReader.cs" />
     <Compile Include="io\ConstantPool.cs" />
     <Compile Include="io\ConstantPoolEntry.cs" />
@@ -65,6 +75,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="core\storage" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

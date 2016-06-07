@@ -192,11 +192,9 @@ namespace jvm_cs
         public const byte BIPUSH = 16; // visitIntInsn
         public const byte SIPUSH = 17; // -
         public const byte LDC = 18; // visitLdcInsn
-
-        // int LDC_W = 19; // -
-        // int LDC2_W = 20; // -
+        public const byte LDC_W = 19;
+        public const byte LDC2_W = 20;
         public const byte ILOAD = 21; // visitVarInsn
-                      
         public const byte LLOAD = 22; // -
         public const byte FLOAD = 23; // -
         public const byte DLOAD = 24; // -
@@ -223,7 +221,7 @@ namespace jvm_cs
         // int ALOAD_2 = 44; // -
         // int ALOAD_3 = 45; // -
         public const byte IALOAD = 46; // visitInsn
-                      
+
         public const byte LALOAD = 47; // -
         public const byte FALOAD = 48; // -
         public const byte DALOAD = 49; // -
@@ -258,7 +256,7 @@ namespace jvm_cs
         // int ASTORE_2 = 77; // -
         // int ASTORE_3 = 78; // -
         public const byte IASTORE = 79; // visitInsn
-                    
+
         public const byte LASTORE = 80; // -
         public const byte FASTORE = 81; // -
         public const byte DASTORE = 82; // -
@@ -376,10 +374,10 @@ namespace jvm_cs
         public const byte MONITORENTER = 194; // visitInsn
         public const byte MONITOREXIT = 195; // -
         public const byte WIDE = 196;
-                     
+
         // int WIDE = byte; // NOT VISITED
         public const byte MULTIANEWARRAY = 197; // visitMultiANewArrayInsn
-                      
+
         public const byte IFNULL = 198; // visitJumpInsn
         public const byte IFNONNULL = 199; // -
         // int GOTO_W = 200; // -

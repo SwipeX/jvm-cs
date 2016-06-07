@@ -17,7 +17,7 @@ namespace Test
         private static void Main()
         {
             ClassReader reader =
-                new ClassReader(@"C:\Users\TimD\IdeaProjects\JINU\out\production\JINU\pw\dekk\Application.class");
+                new ClassReader(@"C:\Users\TimD\Desktop\Boot.class");
             ClassData data = reader.Read();
             foreach (MethodData md in data.Methods)
             {

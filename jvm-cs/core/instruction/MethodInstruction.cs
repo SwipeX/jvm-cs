@@ -10,10 +10,10 @@ namespace jvm_cs.core.instruction
     {
         public int Count { get; private set; } //used for invokeinterface
 
-        public MethodInstruction(byte opcode, string owner, string name, string desc) : base(opcode, owner, name, desc)
+        public MethodInstruction(byte opcode, int index,  string owner, string name, string desc) : base(opcode,index, owner, name, desc)
         {
         }
-        public MethodInstruction(byte opcode, string owner, string name, string desc, int count) : base(opcode, owner, name, desc)
+        public MethodInstruction(byte opcode,  int index, string owner, string name, string desc, int count) : base(opcode,index, owner, name, desc)
         {
             Count = count;
         }

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
+using jvm_cs.core;
+using jvm_cs.core.storage;
 using jvm_cs.io;
 
 namespace jvm_cs
@@ -33,6 +35,14 @@ namespace jvm_cs
             Methods = new List<MethodData>();
             Attribues = new List<Attribute>();
             Bytes = bytes;
+        }
+
+        public ClassData Super()
+        {
+            ClassData super;
+            if (Utilities.SystemClass(SuperName))
+                return null;
+            return !ClassGroup.Classes.TryGetValue(SuperName, out super) ? null : super;
         }
     }
 }
