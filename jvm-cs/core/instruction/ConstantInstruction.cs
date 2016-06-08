@@ -8,5 +8,10 @@
         {
             Constant = constant;
         }
+
+        public override string ToString()
+        {
+            return base.ToString() + " " + Constant;
+        }
     }
 }

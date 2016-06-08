@@ -14,5 +14,10 @@ namespace jvm_cs.core.instruction
         {
             VarIndex = varIndex;
         }
+
+        public override string ToString()
+        {
+            return base.ToString() + " " + VarIndex;
+        }
     }
 }

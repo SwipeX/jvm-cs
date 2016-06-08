@@ -8,7 +8,7 @@ namespace jvm_cs.core.instruction
         public int LowByte { get; private set; }
         public int HighByte { get; private set; }
         public int[] JumpOffsets;
-        public Instruction[] JumpInstructions; //set these in resolve
+        public Label[] Labels;
 
         public TableSwitchInstruction(byte opcode, int index, int offset, int low, int high, int[] jumps) : base(opcode, index)
         {
@@ -16,6 +16,12 @@ namespace jvm_cs.core.instruction
             LowByte = low;
             HighByte = high;
             JumpOffsets = jumps;
+            Labels = new Label[JumpOffsets.Length];
+        }
+
+        public override string ToString()
+        {
+            return base.ToString() + " " + JumpOffsets;
         }
     }
 }

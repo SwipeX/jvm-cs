@@ -8,10 +8,16 @@ namespace jvm_cs.core.instruction
 {
     public class PushInstruction : Instruction
     {
-        public int PushValue;//Bipush,Sipush,Newarray
-        public PushInstruction(byte opcode,  int index,  int pushValue) : base(opcode, index)
+        public int PushValue; //Bipush,Sipush,Newarray
+
+        public PushInstruction(byte opcode, int index, int pushValue) : base(opcode, index)
         {
             PushValue = pushValue;
+        }
+
+        public override string ToString()
+        {
+            return base.ToString() + " " + PushValue;
         }
     }
 }

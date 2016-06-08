@@ -15,5 +15,10 @@ namespace jvm_cs.core.instruction
             Count = count;
             OffsetPairs = pairs;
         }
+
+        public override string ToString()
+        {
+            return base.ToString() + " " + Count;
+        }
     }
 }

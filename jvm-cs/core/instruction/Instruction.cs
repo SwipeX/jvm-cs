@@ -1,4 +1,6 @@
-﻿namespace jvm_cs.core.instruction
+﻿using System.Linq;
+
+namespace jvm_cs.core.instruction
 {
     public class Instruction
     {
@@ -22,5 +24,10 @@
         {
             return Previous != null;
         }
+
+         public override string ToString()
+         {
+             return Opcodes.NAMES[Opcode];
+         }
     }
 }

@@ -26,7 +26,7 @@ namespace Test
                 if (instructions == null) continue;
                 foreach (Instruction instruction in instructions)
                 {
-                    Console.WriteLine("     " + instruction.GetType().Name);
+                    Console.WriteLine("     " + instruction.ToString());
                 }
             }
         }

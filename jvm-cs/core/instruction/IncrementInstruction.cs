@@ -8,13 +8,18 @@ namespace jvm_cs.core.instruction
 {
     public class IncrementInstruction : Instruction
     {
-        public int VarIndex;//IINC
+        public int VarIndex; //IINC
         public int Value;
 
-        public IncrementInstruction(byte opcode, int index,  int varIndex, int value) : base(opcode,index)
+        public IncrementInstruction(byte opcode, int index, int varIndex, int value) : base(opcode, index)
         {
             VarIndex = varIndex;
             Value = value;
+        }
+
+        public override string ToString()
+        {
+            return base.ToString() + " " + VarIndex + " " + Value;
         }
     }
 }

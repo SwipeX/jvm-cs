@@ -61,6 +61,7 @@
     <Compile Include="core\instruction\Instruction.cs" />
     <Compile Include="core\instruction\PushInstruction.cs" />
     <Compile Include="core\instruction\VariableInstruction.cs" />
+    <Compile Include="core\Label.cs" />
     <Compile Include="core\storage\ClassGroup.cs" />
     <Compile Include="core\Utilities.cs" />
     <Compile Include="io\ClassReader.cs" />

@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="RIDER_MODULE" version="4">
   <component name="NewModuleRootManager">
+    <content url="file://$USER_HOME$/AppData/Local/JetBrains/Shared/v06/DecompilerCache/decompiler/EB42D438-D910-4C2A-88D3-7C54893CAA21/15/79efdef1/Object.cs">
+      <sourceFolder url="file://$USER_HOME$/AppData/Local/JetBrains/Shared/v06/DecompilerCache/decompiler/EB42D438-D910-4C2A-88D3-7C54893CAA21/15/79efdef1/Object.cs" isTestSource="false" />
+    </content>
     <content url="file://$USER_HOME$/AppData/Local/JetBrains/Shared/v06/DecompilerCache/decompiler/EB42D438-D910-4C2A-88D3-7C54893CAA21/cd/776caf52/Stream.cs">
       <sourceFolder url="file://$USER_HOME$/AppData/Local/JetBrains/Shared/v06/DecompilerCache/decompiler/EB42D438-D910-4C2A-88D3-7C54893CAA21/cd/776caf52/Stream.cs" isTestSource="false" />
     </content>
     <content url="file://$USER_HOME$/AppData/Local/Symbols/src/source/.NET/4/DEVDIV_TFS/Dev10/Releases/RTMRel/ndp/clr/src/BCL/System/IO/BinaryReader.cs/1305376/BinaryReader.cs">
       <sourceFolder url="file://$USER_HOME$/AppData/Local/Symbols/src/source/.NET/4/DEVDIV_TFS/Dev10/Releases/RTMRel/ndp/clr/src/BCL/System/IO/BinaryReader.cs/1305376/BinaryReader.cs" isTestSource="false" />
+    </content>
+    <content url="file://$USER_HOME$/AppData/Local/Symbols/src/source/.NET/4/DEVDIV_TFS/Dev10/Releases/RTMRel/ndp/clr/src/BCL/System/Reflection/XXXInfos.cs/1305376/XXXInfos.cs">
+      <sourceFolder url="file://$USER_HOME$/AppData/Local/Symbols/src/source/.NET/4/DEVDIV_TFS/Dev10/Releases/RTMRel/ndp/clr/src/BCL/System/Reflection/XXXInfos.cs/1305376/XXXInfos.cs" isTestSource="false" />
     </content>
     <content url="file://$USER_HOME$/AppData/Local/Symbols/src/source/.NET/4/DEVDIV_TFS/Dev10/Releases/RTMRel/ndp/clr/src/BCL/System/UInt32.cs/1305376/UInt32.cs">
       <sourceFolder url="file://$USER_HOME$/AppData/Local/Symbols/src/source/.NET/4/DEVDIV_TFS/Dev10/Releases/RTMRel/ndp/clr/src/BCL/System/UInt32.cs/1305376/UInt32.cs" isTestSource="false" />

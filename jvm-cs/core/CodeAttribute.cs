@@ -62,9 +62,14 @@ namespace jvm_cs.core
             foreach (Instruction instruction in instructions) {
                 if (instruction is BranchInstruction) {
                     BranchInstruction branchInstruction = (BranchInstruction) instruction;
-                    branchInstruction.Destination = Instructions.AtIndex(instructions, branchInstruction.TotalOffset());
+                    branchInstruction.Label = new Label(branchInstruction, branchInstruction.TotalOffset(), instructions);
                 } else if (instruction is MathInstruction) {
                     MathInstruction mathInstruction = (MathInstruction) instruction;
+                } else if (instruction is TableSwitchInstruction) {
+                    TableSwitchInstruction tis = (TableSwitchInstruction) instruction;
+                    for (int i = 0; i < tis.JumpOffsets.Length; i++) {
+                        tis.Labels[i] = new Label(tis, tis.JumpOffsets[i], instructions);
+                    }
                 }
             }
         }

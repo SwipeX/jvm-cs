@@ -14,5 +14,10 @@ namespace jvm_cs.core.instruction
         {
             Type = type;
         }
+
+        public override string ToString()
+        {
+            return base.ToString() + " " + Type;
+        }
     }
 }
