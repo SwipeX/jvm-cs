@@ -1,48 +1,44 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
-using jvm_cs.core;
+﻿using System.Collections.Generic;
+using jvm_cs.core.attribute;
+using jvm_cs.core.member;
 using jvm_cs.core.storage;
 using jvm_cs.io;
 
-namespace jvm_cs
+namespace jvm_cs.core
 {
-    public class ClassData
+    public class ClassData : MemberData
     {
-        public List<Attribute> Attribues { get; }
         public List<FieldData> Fields { get; }
         public List<MethodData> Methods { get; }
         public List<string> Interfaces { get; }
+        public List<InnerClassData> InnerClasses { get; }
         public ConstantPool Pool { get; }
-        public int Access { get; }
-        public string Name { get; }
         public string SuperName { get; }
-
         public byte[] Bytes { get; set; }
 
         public ClassData(string name, string supername, int access, ConstantPool constantPool, List<string> interfaces,
-            byte[] bytes)
+            byte[] bytes) : base(name, access)
         {
-            Name = name;
             SuperName = supername;
-            Access = access;
             Pool = constantPool;
             Interfaces = interfaces;
             Fields = new List<FieldData>();
             Methods = new List<MethodData>();
-            Attribues = new List<Attribute>();
+            InnerClasses = new List<InnerClassData>();
             Bytes = bytes;
         }
 
-        public ClassData Super()
+        public ClassData SuperClass()
         {
             ClassData super;
             if (Utilities.SystemClass(SuperName))
                 return null;
             return !ClassGroup.Classes.TryGetValue(SuperName, out super) ? null : super;
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
     }
 }

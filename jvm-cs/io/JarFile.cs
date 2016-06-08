@@ -4,6 +4,7 @@ using System.Data;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using jvm_cs.core;
 using jvm_cs.core.storage;
 using Test;
 

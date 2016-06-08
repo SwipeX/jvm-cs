@@ -41,10 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="core\Attribute.cs" />
-    <Compile Include="core\ClassData.cs" />
-    <Compile Include="core\CodeAttribute.cs" />
-    <Compile Include="core\InnerClassData.cs" />
+    <Compile Include="core\attribute\Attribute.cs" />
+    <Compile Include="core\attribute\CodeAttribute.cs" />
+    <Compile Include="core\attribute\ExceptionsAttribute.cs" />
+    <Compile Include="core\attribute\InnerClassAttribute.cs" />
     <Compile Include="core\instruction\BranchInstruction.cs" />
     <Compile Include="core\instruction\ConstantInstruction.cs" />
     <Compile Include="core\instruction\ConversionInstruction.cs" />
@@ -62,15 +62,18 @@
     <Compile Include="core\instruction\PushInstruction.cs" />
     <Compile Include="core\instruction\VariableInstruction.cs" />
     <Compile Include="core\Label.cs" />
+    <Compile Include="core\member\ClassData.cs" />
+    <Compile Include="core\member\FieldData.cs" />
+    <Compile Include="core\member\InnerClassData.cs" />
+    <Compile Include="core\member\MemberData.cs" />
+    <Compile Include="core\member\MethodData.cs" />
     <Compile Include="core\storage\ClassGroup.cs" />
     <Compile Include="core\Utilities.cs" />
     <Compile Include="io\ClassReader.cs" />
     <Compile Include="io\ConstantPool.cs" />
     <Compile Include="io\ConstantPoolEntry.cs" />
     <Compile Include="io\DataReader.cs" />
-    <Compile Include="core\FieldData.cs" />
     <Compile Include="io\JarFile.cs" />
-    <Compile Include="core\MethodData.cs" />
     <Compile Include="Opcodes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -78,6 +81,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="core\attribute" />
+    <Folder Include="core\member" />
     <Folder Include="core\storage" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

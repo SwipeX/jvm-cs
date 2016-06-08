@@ -1,29 +1,21 @@
-﻿using jvm_cs.core.instruction;
-using jvm_cs.io;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
+using jvm_cs.core.instruction;
+using jvm_cs.core.member;
 
-namespace jvm_cs.core
+namespace jvm_cs.core.attribute
 {
     public class CodeAttribute : Attribute
     {
-        private readonly MethodData _owner;
 
-        public CodeAttribute(string name, uint length, MethodData owner) : base(name, length)
+        public CodeAttribute(string name, uint length, MemberData owner) : base(name, length, owner)
         {
-            _owner = owner;
         }
 
         public override void ReadBytes(DataReader reader)
         {
-            _owner.MaxStack = reader.ReadUInt16();
-            _owner.MaxLocals = reader.ReadUInt16();
+            Owner.MaxStack = reader.ReadUInt16();
+            Owner.MaxLocals = reader.ReadUInt16();
             uint codeLength = reader.ReadUInt32();
             ProcessCode(reader.ReadBytes((int) codeLength));
             ushort exceptionCount = reader.ReadUInt16();
@@ -52,9 +44,9 @@ namespace jvm_cs.core
                     previous.Next = instruction;
                 }
                 previous = instruction;
-                _owner.Instructions.Add(instruction);
+                Owner.Instructions.Add(instruction);
             }
-            Resolve(_owner.Instructions);
+            Resolve(Owner.Instructions);
         }
 
         private void Resolve(List<Instruction> instructions)
@@ -87,7 +79,7 @@ namespace jvm_cs.core
                 case Opcodes.LDC:
                 case Opcodes.LDC_W:
                 case Opcodes.LDC2_W:
-                    return new ConstantInstruction(opcode, index, _owner.Owner.Pool.Value(opcode > Opcodes.LDC ? reader.ReadUInt16() : reader.ReadByte()));
+                    return new ConstantInstruction(opcode, index, Owner.Owner.Pool.Value(opcode > Opcodes.LDC ? reader.ReadUInt16() : reader.ReadByte()));
                 case Opcodes.BIPUSH:
                     return new PushInstruction(opcode, index, reader.ReadByte());
 
@@ -167,7 +159,7 @@ namespace jvm_cs.core
                     return new LookupSwitchInstruction(opcode, index, offset, pairCount, pairs);
                 case Opcodes.CHECKCAST:
                 case Opcodes.ANEWARRAY:
-                    return new TypeInstruction(opcode, index, _owner.Owner.Pool.Value(reader.ReadUInt16()) as string);
+                    return new TypeInstruction(opcode, index, Owner.Owner.Pool.Value(reader.ReadUInt16()) as string);
                 default:
                 {
                     if (opcode >= Opcodes.IADD && opcode <= Opcodes.LXOR) {
@@ -193,7 +185,7 @@ namespace jvm_cs.core
         private string[] ReadMethod(DataReader reader)
         {
             ushort index = reader.ReadUInt16();
-            object o = _owner.Owner.Pool.Value(index);
+            object o = Owner.Owner.Pool.Value(index);
             string[] strings = o as string[];
             if (strings == null) return new[] {"", "", ""}; //TODO avoid this
             string[] value = strings;

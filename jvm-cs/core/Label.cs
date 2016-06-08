@@ -25,5 +25,10 @@ namespace jvm_cs.core
             JumpIndex = jump;
             Destintation = Instructions.AtIndex(instructions, jump);
         }
+
+        public override string ToString()
+        {
+            return Index + " " + JumpIndex;
+        }
     }
 }

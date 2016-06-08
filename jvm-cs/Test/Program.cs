@@ -1,10 +1,8 @@
-﻿using jvm_cs;
-using jvm_cs.core.instruction;
+﻿using jvm_cs.core.instruction;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using jvm_cs.core;
+using jvm_cs.core.member;
 
 namespace Test
 {
@@ -26,7 +24,7 @@ namespace Test
                 if (instructions == null) continue;
                 foreach (Instruction instruction in instructions)
                 {
-                    Console.WriteLine("     " + instruction.ToString());
+                    Console.WriteLine("     " + instruction);
                 }
             }
         }

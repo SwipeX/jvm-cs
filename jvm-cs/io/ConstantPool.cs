@@ -72,7 +72,7 @@ namespace jvm_cs.io
         }
 
 
-        public object Value(uint index)
+        public object Value(long index)
         {
             if (index < _entries.Length)
             {
