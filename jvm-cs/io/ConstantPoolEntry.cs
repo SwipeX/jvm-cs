@@ -13,9 +13,11 @@ namespace jvm_cs
         public byte Tag { get; set; }
         public byte[] Bytes { get; set; }
         public dynamic Value { get; set; }
+        private ConstantPool _parent;
 
-        public ConstantPoolEntry(int index, byte tag, byte[] value)
+        public ConstantPoolEntry(ConstantPool parent, int index, byte tag, byte[] value)
         {
+            _parent = parent;
             Index = index;
             Tag = tag;
             Bytes = value;
@@ -28,8 +30,8 @@ namespace jvm_cs
                 case Opcodes.NAME_TYPE:
                     uint k = DataReader.ReadUInt16(new[] {Bytes[0], Bytes[1]});
                     uint j = DataReader.ReadUInt16(new[] {Bytes[2], Bytes[3]});
-                    string data = (string) ConstantPool.Instance.Value(k);
-                    string desc = (string) ConstantPool.Instance.Value(j);
+                    string data = (string) _parent.Value(k);
+                    string desc = (string) _parent.Value(j);
                     Value = new string[] {data, desc};
                     break;
                 case Opcodes.IMETH:
@@ -37,15 +39,15 @@ namespace jvm_cs
                 case Opcodes.FIELD:
                     uint classIndex = DataReader.ReadUInt16(new[] {Bytes[0], Bytes[1]});
                     uint nameTypeIndex = DataReader.ReadUInt16(new[] {Bytes[2], Bytes[3]});
-                    string className = (string) ConstantPool.Instance.Value(classIndex);
-                    string[] nameType = (string[]) ConstantPool.Instance.Value(nameTypeIndex);
+                    string className = (string) _parent.Value(classIndex);
+                    string[] nameType = (string[]) _parent.Value(nameTypeIndex);
                     Value = new string[] {className, nameType[0], nameType[1]};
                     break;
 
                 case Opcodes.INDY:
                     //bootstrap_method_attr_index???
                     uint i = DataReader.ReadUInt16(new[] {Bytes[2], Bytes[3]});
-                    Value = ConstantPool.Instance.Value(i);
+                    Value = _parent.Value(i);
                     break;
 
                 case Opcodes.INTEGER:
@@ -71,14 +73,14 @@ namespace jvm_cs
                 case Opcodes.HANDLE:
                     byte kind = Bytes[0];
                     ushort idx = DataReader.ReadUInt16(new[] {Bytes[1], Bytes[2]});
-                    Value = ConstantPool.Instance.Value(idx);
+                    Value = _parent.Value(idx);
                     break;
 
                 case Opcodes.STR:
                 case Opcodes.MTYPE:
                 case Opcodes.CLASS:
                     uint index = DataReader.ReadUInt16(Bytes);
-                    Value = ConstantPool.Instance.Value(index);
+                    Value = _parent.Value(index);
                     break;
 
                 default:

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -6,21 +7,14 @@ namespace jvm_cs.io
 {
     public class ConstantPool
     {
-        private static ConstantPoolEntry[] _entries;
-        private static int _size;
-        public static ConstantPool Instance { get; private set; }
+        private ConstantPoolEntry[] _entries;
+        private int _size;
 
         public ConstantPool(int size)
         {
-            Instance = this;
             _size = size;
             _entries = new ConstantPoolEntry[_size];
-            _entries[0] = new ConstantPoolEntry(-1, 0, null);
-        }
-
-        public static bool HasEntries()
-        {
-            return _entries != null && _entries.Length > 0;
+            _entries[0] = new ConstantPoolEntry(this, -1, 0, null);
         }
 
         public void Read(DataReader reader)
@@ -37,31 +31,31 @@ namespace jvm_cs.io
                     case Opcodes.FLOAT:
                     case Opcodes.NAME_TYPE:
                     case Opcodes.INDY:
-                        _entries[i] = new ConstantPoolEntry(i, tag,
+                        _entries[i] = new ConstantPoolEntry(this, i, tag,
                             reader.ReadBytes(4));
                         break;
 
                     case Opcodes.LONG:
                     case Opcodes.DOUBLE:
-                        _entries[i] = new ConstantPoolEntry(i, tag,
+                        _entries[i] = new ConstantPoolEntry(this, i, tag,
                             reader.ReadBytes(8));
                         ++i;
                         break;
 
                     case Opcodes.UTF8:
-                        _entries[i] = new ConstantPoolEntry(i, tag,
+                        _entries[i] = new ConstantPoolEntry(this, i, tag,
                             reader.ReadBytes(reader.ReadUInt16()));
                         break;
 
                     case Opcodes.HANDLE:
-                        _entries[i] = new ConstantPoolEntry(i, tag,
+                        _entries[i] = new ConstantPoolEntry(this, i, tag,
                             reader.ReadBytes(3));
                         break;
 
                     case Opcodes.CLASS:
                     case Opcodes.MTYPE:
                     case Opcodes.STR:
-                        _entries[i] = new ConstantPoolEntry(i, tag,
+                        _entries[i] = new ConstantPoolEntry(this, i, tag,
                             reader.ReadBytes(2));
                         break;
 

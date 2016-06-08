@@ -82,7 +82,7 @@ namespace jvm_cs.core
                 case Opcodes.LDC:
                 case Opcodes.LDC_W:
                 case Opcodes.LDC2_W:
-                    return new ConstantInstruction(opcode, index, ConstantPool.Instance.Value(opcode > Opcodes.LDC ? reader.ReadUInt16() : reader.ReadByte()));
+                    return new ConstantInstruction(opcode, index, _owner.Owner.Pool.Value(opcode > Opcodes.LDC ? reader.ReadUInt16() : reader.ReadByte()));
                 case Opcodes.BIPUSH:
                     return new PushInstruction(opcode, index, reader.ReadByte());
 
@@ -162,7 +162,7 @@ namespace jvm_cs.core
                     return new LookupSwitchInstruction(opcode, index, offset, pairCount, pairs);
                 case Opcodes.CHECKCAST:
                 case Opcodes.ANEWARRAY:
-                    return new TypeInstruction(opcode, index, ConstantPool.Instance.Value(reader.ReadUInt16()) as string);
+                    return new TypeInstruction(opcode, index, _owner.Owner.Pool.Value(reader.ReadUInt16()) as string);
                 default:
                 {
                     if (opcode >= Opcodes.IADD && opcode <= Opcodes.LXOR) {
@@ -188,7 +188,7 @@ namespace jvm_cs.core
         private string[] ReadMethod(DataReader reader)
         {
             ushort index = reader.ReadUInt16();
-            object o = ConstantPool.Instance.Value(index);
+            object o = _owner.Owner.Pool.Value(index);
             string[] strings = o as string[];
             if (strings == null) return new[] {"", "", ""}; //TODO avoid this
             string[] value = strings;
