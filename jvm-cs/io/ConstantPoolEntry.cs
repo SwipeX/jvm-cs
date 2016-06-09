@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using jvm_cs.io;
 
-namespace jvm_cs
+namespace jvm_cs.io
 {
     public class ConstantPoolEntry
     {

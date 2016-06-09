@@ -8,7 +8,6 @@ namespace jvm_cs.core.attribute
         public int[] IndexTable;
         public string[] ThrownClasses;
 
-
         public ExceptionsAttribute(string name, uint length, MemberData owner) : base(name, length, owner)
         {
         }

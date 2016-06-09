@@ -1,0 +1,18 @@
+﻿using System;
+using jvm_cs.core.member;
+
+namespace jvm_cs.core.attribute
+{
+    public class SourceFileAttribute : Attribute
+    {
+        public string SourceFile { get; private set; }
+        public SourceFileAttribute(string name, uint length, MemberData owner) : base(name, length, owner)
+        {
+        }
+
+        public override void ReadBytes(DataReader reader)
+        {
+            SourceFile = Owner.Pool.Value(reader.ReadUInt16());
+        }
+    }
+}

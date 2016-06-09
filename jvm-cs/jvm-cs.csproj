@@ -43,8 +43,26 @@
   <ItemGroup>
     <Compile Include="core\attribute\Attribute.cs" />
     <Compile Include="core\attribute\CodeAttribute.cs" />
+    <Compile Include="core\attribute\ConstantValueAttribute.cs" />
+    <Compile Include="core\attribute\DeprecatedAttribute.cs" />
+    <Compile Include="core\attribute\element\AnnotationElementValue.cs" />
+    <Compile Include="core\attribute\element\ArrayElementValue.cs" />
+    <Compile Include="core\attribute\element\ClassElementValue.cs" />
+    <Compile Include="core\attribute\element\ConstantElementValue.cs" />
+    <Compile Include="core\attribute\element\ElementValue.cs" />
+    <Compile Include="core\attribute\element\ElementValuePair.cs" />
+    <Compile Include="core\attribute\element\EnumElementValue.cs" />
+    <Compile Include="core\attribute\EnclosingMethodAttribute.cs" />
     <Compile Include="core\attribute\ExceptionsAttribute.cs" />
     <Compile Include="core\attribute\InnerClassAttribute.cs" />
+    <Compile Include="core\attribute\RuntimeAnnotationsAttribute.cs" />
+    <Compile Include="core\attribute\RuntimeInvisibleAnnotationsAttribute.cs" />
+    <Compile Include="core\attribute\RuntimeInvisibleParameterAnnotations .cs" />
+    <Compile Include="core\attribute\RuntimeVisibleAnnotationsAttribute.cs" />
+    <Compile Include="core\attribute\RuntimeVisibleParameterAnnotations .cs" />
+    <Compile Include="core\attribute\SignatureAttribute.cs" />
+    <Compile Include="core\attribute\SourceFileAttribute.cs" />
+    <Compile Include="core\attribute\SyntheticAttribute.cs" />
     <Compile Include="core\instruction\BranchInstruction.cs" />
     <Compile Include="core\instruction\ConstantInstruction.cs" />
     <Compile Include="core\instruction\ConversionInstruction.cs" />
@@ -82,6 +100,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="core\attribute" />
+    <Folder Include="core\attribute\element" />
     <Folder Include="core\member" />
     <Folder Include="core\storage" />
   </ItemGroup>

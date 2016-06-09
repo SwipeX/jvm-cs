@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using jvm_cs.core;
 using jvm_cs.core.member;
+using jvm_cs.io;
 
 namespace Test
 {
@@ -14,8 +15,8 @@ namespace Test
         [STAThread]
         private static void Main()
         {
-            ClassReader reader =
-                new ClassReader(@"C:\Users\TimD\Desktop\Boot.class");
+            ClassReader reader = new ClassReader(@"C:\Users\TimD\IdeaProjects\Test\out\production\Test\Test.class");
+               // new ClassReader(@"C:\Users\TimD\Desktop\Boot.class");
             ClassData data = reader.Read();
             foreach (MethodData md in data.Methods)
             {

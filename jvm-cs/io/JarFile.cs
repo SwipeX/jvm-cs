@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.IO;
+﻿using System.IO;
 using System.IO.Compression;
-using System.Linq;
 using jvm_cs.core;
 using jvm_cs.core.storage;
-using Test;
 
-namespace jvm_cs
+namespace jvm_cs.io
 {
     public class JarFile
     {
