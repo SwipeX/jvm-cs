@@ -10,7 +10,7 @@ namespace jvm_cs.core.attribute.element
         public void Read(DataReader reader)
         {
             NameIndex = reader.ReadUInt16();
-            Value = ElementValue.GetElementValue(reader.ReadChar(), reader);
+            Value = ElementValue.GetElementValue(reader);
         }
     }
 }

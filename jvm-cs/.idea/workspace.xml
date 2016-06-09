@@ -20,16 +20,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AnnotationElementValue.cs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AnnotationElementValue.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/attribute/element/AnnotationElementValue.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="16" column="47" selection-start-line="16" selection-start-column="47" selection-end-line="16" selection-end-column="47" />
+            <state relative-caret-position="176">
+              <caret line="11" column="9" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BootstrapMethodsAttribute.cs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/core/attribute/BootstrapMethodsAttribute.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="320">
+              <caret line="20" column="82" selection-start-line="20" selection-start-column="82" selection-end-line="20" selection-end-column="82" />
               <folding>
-                <marker date="1465495463297" expanded="true" signature="54:719" ph="{...}" />
-                <marker date="1465495463297" expanded="true" signature="111:717" ph="{...}" />
-                <marker date="1465495463297" expanded="true" signature="322:342" ph="{...}" />
-                <marker date="1465495463297" expanded="true" signature="396:711" ph="{...}" />
+                <marker date="1465504091795" expanded="true" signature="58:847" ph="{...}" />
+                <marker date="1465504091795" expanded="true" signature="115:845" ph="{...}" />
+                <marker date="1465504091795" expanded="true" signature="348:368" ph="{...}" />
+                <marker date="1465504091795" expanded="true" signature="427:839" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ElementValue.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/attribute/element/ElementValue.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="464">
+              <caret line="29" column="51" selection-start-line="29" selection-start-column="51" selection-end-line="29" selection-end-column="51" />
+              <folding>
+                <marker date="1465498610674" expanded="true" signature="54:1662" ph="{...}" />
+                <marker date="1465498610674" expanded="true" signature="95:1660" ph="{...}" />
+                <marker date="1465498610674" expanded="true" signature="791:889" ph="{...}" />
+                <marker date="1465498610674" expanded="true" signature="960:1599" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -40,8 +65,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/core/instruction/FieldInstruction.cs" />
-        <option value="$PROJECT_DIR$/core/instruction/MemberInstruction.cs" />
         <option value="$PROJECT_DIR$/core/instruction/IncrementInstruction.cs" />
         <option value="$PROJECT_DIR$/core/instruction/LookupSwitchInstruction.cs" />
         <option value="$PROJECT_DIR$/core/instruction/PushInstruction.cs" />
@@ -83,14 +106,16 @@
         <option value="$PROJECT_DIR$/core/attribute/element/EnumElementValue.cs" />
         <option value="$PROJECT_DIR$/core/attribute/element/ClassElementValue.cs" />
         <option value="$PROJECT_DIR$/core/attribute/element/ConstantElementValue.cs" />
-        <option value="$PROJECT_DIR$/core/attribute/element/ArrayElementValue.cs" />
         <option value="$PROJECT_DIR$/core/attribute/RuntimeVisibleParameterAnnotations .cs" />
         <option value="$PROJECT_DIR$/core/attribute/RuntimeInvisibleParameterAnnotations .cs" />
         <option value="$PROJECT_DIR$/core/attribute/RuntimeAnnotationsAttribute.cs" />
         <option value="$PROJECT_DIR$/io/ClassReader.cs" />
         <option value="$PROJECT_DIR$/core/attribute/element/AnnotationElementValue.cs" />
-        <option value="$PROJECT_DIR$/core/attribute/element/ElementValuePair.cs" />
         <option value="$PROJECT_DIR$/core/attribute/element/ElementValue.cs" />
+        <option value="$PROJECT_DIR$/core/attribute/element/ElementValuePair.cs" />
+        <option value="$PROJECT_DIR$/core/attribute/element/ArrayElementValue.cs" />
+        <option value="$PROJECT_DIR$/core/attribute/AnnotationDefaultAttribute.cs" />
+        <option value="$PROJECT_DIR$/core/attribute/BootstrapMethodsAttribute.cs" />
       </list>
     </option>
   </component>
@@ -185,54 +210,6 @@
               <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jvm-cs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jvm-cs" />
-              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jvm-cs" />
-              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="attribute" />
-              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jvm-cs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jvm-cs" />
-              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jvm-cs" />
-              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="attribute" />
-              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="element" />
-              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -285,10 +262,10 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24947916" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Errors in solution" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32980973" sideWeight="0.49791667" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32980973" sideWeight="0.50208336" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="NuGet" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -321,20 +298,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/core/instruction/IncrementInstruction.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="21" column="65" selection-start-line="21" selection-start-column="65" selection-end-line="21" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/instruction/LookupSwitchInstruction.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="20" column="48" selection-start-line="20" selection-start-column="48" selection-end-line="20" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/instruction/NumericInstruction.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
@@ -654,20 +617,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/attribute/Attribute.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="18" column="15" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="15" />
-          <folding>
-            <marker date="1465416607168" expanded="true" signature="58:900" ph="{...}" />
-            <marker date="1465416607168" expanded="true" signature="87:898" ph="{...}" />
-            <marker date="1465416607168" expanded="true" signature="487:590" ph="{...}" />
-            <marker date="1465416607168" expanded="true" signature="648:816" ph="{...}" />
-            <marker date="1465416607168" expanded="true" signature="846:892" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/attribute/RuntimeVisibleAnnotationsAttribute.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
@@ -760,57 +709,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/attribute/element/ArrayElementValue.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="10" column="52" selection-start-line="10" selection-start-column="52" selection-end-line="10" selection-end-column="52" />
-          <folding>
-            <marker date="1465493026284" expanded="true" signature="39:628" ph="{...}" />
-            <marker date="1465493026284" expanded="true" signature="91:626" ph="{...}" />
-            <marker date="1465493026284" expanded="true" signature="239:259" ph="{...}" />
-            <marker date="1465493026284" expanded="true" signature="313:620" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/attribute/element/ClassElementValue.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="4" column="81" selection-start-line="4" selection-start-column="81" selection-end-line="4" selection-end-column="81" />
-          <folding>
-            <marker date="1465492963386" expanded="true" signature="39:338" ph="{...}" />
-            <marker date="1465492963386" expanded="true" signature="91:336" ph="{...}" />
-            <marker date="1465492963386" expanded="true" signature="179:199" ph="{...}" />
-            <marker date="1465492963386" expanded="true" signature="253:330" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/attribute/element/ElementValuePair.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="11" column="44" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
-          <folding>
-            <marker date="1465495499414" expanded="true" signature="54:401" ph="{...}" />
-            <marker date="1465495499414" expanded="true" signature="90:399" ph="{...}" />
-            <marker date="1465495499414" expanded="true" signature="251:393" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/attribute/element/ElementValue.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="30" column="9" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="9" />
-          <folding>
-            <marker date="1465495499455" expanded="true" signature="54:1630" ph="{...}" />
-            <marker date="1465495499455" expanded="true" signature="95:1628" ph="{...}" />
-            <marker date="1465495499455" expanded="true" signature="791:889" ph="{...}" />
-            <marker date="1465495499455" expanded="true" signature="970:1567" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/attribute/element/ConstantElementValue.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
@@ -824,15 +722,103 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/core/attribute/Attribute.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+          <folding>
+            <marker date="1465416607168" expanded="true" signature="58:900" ph="{...}" />
+            <marker date="1465416607168" expanded="true" signature="87:898" ph="{...}" />
+            <marker date="1465416607168" expanded="true" signature="487:590" ph="{...}" />
+            <marker date="1465416607168" expanded="true" signature="648:816" ph="{...}" />
+            <marker date="1465416607168" expanded="true" signature="846:892" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/attribute/element/ClassElementValue.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="4" column="15" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
+          <folding>
+            <marker date="1465492963386" expanded="true" signature="39:338" ph="{...}" />
+            <marker date="1465492963386" expanded="true" signature="91:336" ph="{...}" />
+            <marker date="1465492963386" expanded="true" signature="179:199" ph="{...}" />
+            <marker date="1465492963386" expanded="true" signature="253:330" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/attribute/element/ElementValue.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="464">
+          <caret line="29" column="51" selection-start-line="29" selection-start-column="51" selection-end-line="29" selection-end-column="51" />
+          <folding>
+            <marker date="1465498610674" expanded="true" signature="54:1662" ph="{...}" />
+            <marker date="1465498610674" expanded="true" signature="95:1660" ph="{...}" />
+            <marker date="1465498610674" expanded="true" signature="791:889" ph="{...}" />
+            <marker date="1465498610674" expanded="true" signature="960:1599" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/attribute/element/ArrayElementValue.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="15" column="57" selection-start-line="15" selection-start-column="57" selection-end-line="15" selection-end-column="57" />
+          <folding>
+            <marker date="1465498628870" expanded="true" signature="39:609" ph="{...}" />
+            <marker date="1465498628870" expanded="true" signature="91:607" ph="{...}" />
+            <marker date="1465498628870" expanded="true" signature="239:259" ph="{...}" />
+            <marker date="1465498628870" expanded="true" signature="313:601" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/attribute/element/ElementValuePair.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="12" column="49" selection-start-line="12" selection-start-column="49" selection-end-line="12" selection-end-column="49" />
+          <folding>
+            <marker date="1465498628882" expanded="true" signature="54:382" ph="{...}" />
+            <marker date="1465498628882" expanded="true" signature="90:380" ph="{...}" />
+            <marker date="1465498628882" expanded="true" signature="251:374" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/attribute/AnnotationDefaultAttribute.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding>
+            <marker date="1465498662667" expanded="true" signature="6:62" ph="..." />
+            <marker date="1465498662667" expanded="true" signature="95:494" ph="{...}" />
+            <marker date="1465498662667" expanded="true" signature="153:492" ph="{...}" />
+            <marker date="1465498662667" expanded="true" signature="330:350" ph="{...}" />
+            <marker date="1465498662667" expanded="true" signature="409:486" ph="{...}" />
+            <marker date="1465498662667" expanded="true" signature="418:486" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/core/attribute/element/AnnotationElementValue.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="16" column="47" selection-start-line="16" selection-start-column="47" selection-end-line="16" selection-end-column="47" />
+        <state relative-caret-position="176">
+          <caret line="11" column="9" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/attribute/BootstrapMethodsAttribute.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="20" column="82" selection-start-line="20" selection-start-column="82" selection-end-line="20" selection-end-column="82" />
           <folding>
-            <marker date="1465495463297" expanded="true" signature="54:719" ph="{...}" />
-            <marker date="1465495463297" expanded="true" signature="111:717" ph="{...}" />
-            <marker date="1465495463297" expanded="true" signature="322:342" ph="{...}" />
-            <marker date="1465495463297" expanded="true" signature="396:711" ph="{...}" />
+            <marker date="1465504091795" expanded="true" signature="58:847" ph="{...}" />
+            <marker date="1465504091795" expanded="true" signature="115:845" ph="{...}" />
+            <marker date="1465504091795" expanded="true" signature="348:368" ph="{...}" />
+            <marker date="1465504091795" expanded="true" signature="427:839" ph="{...}" />
           </folding>
         </state>
       </provider>

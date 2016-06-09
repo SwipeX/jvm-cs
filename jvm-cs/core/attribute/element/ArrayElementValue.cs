@@ -13,7 +13,7 @@
             ushort elementValueEntriesLength = reader.ReadUInt16();
             Values = new ElementValue[elementValueEntriesLength];
             for (int i = 0; i < Values.Length; i++) {
-                Values[i] = ElementValue.GetElementValue(reader.ReadChar(), reader);
+                Values[i] = ElementValue.GetElementValue(reader);
             }
         }
     }

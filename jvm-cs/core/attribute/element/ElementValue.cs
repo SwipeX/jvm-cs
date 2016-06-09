@@ -27,8 +27,9 @@ namespace jvm_cs.core.attribute.element
             Read(reader);
         }
 
-        public static ElementValue GetElementValue(char tag, DataReader reader)
+        public static ElementValue GetElementValue(DataReader reader)
         {
+            char tag = reader.ReadChar();
             switch (tag) {
                 case ElementValue.CLASS_TAG:
                     return new ClassElementValue(tag, reader);

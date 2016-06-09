@@ -41,7 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="core\attribute\AnnotationDefaultAttribute.cs" />
     <Compile Include="core\attribute\Attribute.cs" />
+    <Compile Include="core\attribute\BootstrapMethodsAttribute.cs" />
     <Compile Include="core\attribute\CodeAttribute.cs" />
     <Compile Include="core\attribute\ConstantValueAttribute.cs" />
     <Compile Include="core\attribute\DeprecatedAttribute.cs" />
