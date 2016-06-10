@@ -124,9 +124,9 @@ namespace jvm_cs
         // tags for Handle
 
         public const int H_GETFIELD = 1;
-        public const int H_GETconst = 2;
+        public const int H_GETSTATIC = 2;
         public const int H_PUTFIELD = 3;
-        public const int H_PUTconst = 4;
+        public const int H_PUTSTATIC = 4;
         public const int H_INVOKEVIRTUAL = 5;
         public const int H_INVOKEconst = 6;
         public const int H_INVOKESPECIAL = 7;
@@ -384,7 +384,6 @@ namespace jvm_cs
         // int JSR_W = 201; // -
 
         public static string[] NAMES =
-            new string[]
             {
                 "NOP",
                 "ACONST_NULL",

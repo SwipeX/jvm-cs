@@ -15,8 +15,9 @@ namespace jvm_cs.core.attribute
         public override void ReadBytes(DataReader reader)
         {
             ConstantPool pool = Owner.Pool;
-            ClassName = pool.Value(reader.ReadInt16()) as string;
-            MethodName = pool.Value(reader.ReadInt16()) as string;
+            ushort[] data = {reader.ReadUInt16(), reader.ReadUInt16()};
+            ClassName = data[0] > 0 ? pool.Value(data[0]) as string : "";
+            MethodName = data[1] > 0 ? pool.Value(data[1]) as string : "";
         }
     }
 }

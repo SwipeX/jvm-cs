@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using jvm_cs.core.instruction;
 using jvm_cs.core.member;
@@ -7,9 +8,11 @@ namespace jvm_cs.core.attribute
 {
     public class CodeAttribute : Attribute
     {
+        private List<Attribute> Attributes { get; }
 
         public CodeAttribute(string name, uint length, MemberData owner) : base(name, length, owner)
         {
+            Attributes = new List<Attribute>();
         }
 
         public override void ReadBytes(DataReader reader)
@@ -20,16 +23,15 @@ namespace jvm_cs.core.attribute
             ProcessCode(reader.ReadBytes((int) codeLength));
             ushort exceptionCount = reader.ReadUInt16();
             for (int i = 0; i < exceptionCount; i++) {
-                ushort startPc = reader.ReadUInt16();
-                ushort endPc = reader.ReadUInt16();
-                ushort handlerPc = reader.ReadUInt16();
-                ushort catchType = reader.ReadUInt16();
+                Owner.Exceptions.Add(ExceptionData.Read(reader, Owner.Owner.Pool));
             }
             ushort attributesCount = reader.ReadUInt16();
             for (int i = 0; i < attributesCount; i++) {
                 ushort nameIndex = reader.ReadUInt16();
                 uint length = reader.ReadUInt32();
-                reader.ReadBytes((int) length);
+                Attribute subAttribute = new Attribute(Owner.Owner.Pool.Value(nameIndex), length, null);
+                subAttribute.ReadBytes(reader);
+                Attributes.Add(subAttribute);
             }
         }
 
@@ -76,10 +78,12 @@ namespace jvm_cs.core.attribute
                 opcode = reader.ReadByte();
             }
             switch (opcode) {
+                case Opcodes.MULTIANEWARRAY:
+                    return new DimensionalArrayInstruction(opcode, index, Owner.Owner.Pool.Value(reader.ReadUInt16()), reader.ReadByte());
                 case Opcodes.LDC:
                 case Opcodes.LDC_W:
                 case Opcodes.LDC2_W:
-                    return new ConstantInstruction(opcode, index, Owner.Owner.Pool.Value(opcode > Opcodes.LDC ? reader.ReadUInt16() : reader.ReadByte()));
+                    return new ConstantInstruction(opcode, index, Owner.Owner.Pool.Value(opcode > Opcodes.LDC || wide ? reader.ReadUInt16() : reader.ReadByte()));
                 case Opcodes.BIPUSH:
                     return new PushInstruction(opcode, index, reader.ReadByte());
 
@@ -104,11 +108,13 @@ namespace jvm_cs.core.attribute
                 case Opcodes.IF_ICMPGT:
                 case Opcodes.IF_ICMPLE:
                 case Opcodes.IF_ACMPEQ:
+                case Opcodes.IFNONNULL:
+                case Opcodes.IFNULL:
                 case Opcodes.IF_ACMPNE:
                 case Opcodes.GOTO:
                 //JSR,RET deprecated since Java 5.0
                 case Opcodes.JSR:
-                    return new BranchInstruction(opcode, index, wide ? reader.ReadUInt32() : reader.ReadUInt16());
+                    return new BranchInstruction(opcode, index, wide ? reader.ReadInt32() : reader.ReadInt16());
                 case Opcodes.RET:
                     return new VariableInstruction(opcode, index, wide ? reader.ReadUInt16() : reader.ReadByte());
                 case Opcodes.GETFIELD:
@@ -159,6 +165,8 @@ namespace jvm_cs.core.attribute
                     return new LookupSwitchInstruction(opcode, index, offset, pairCount, pairs);
                 case Opcodes.CHECKCAST:
                 case Opcodes.ANEWARRAY:
+                case Opcodes.INSTANCEOF:
+                case Opcodes.NEW:
                     return new TypeInstruction(opcode, index, Owner.Owner.Pool.Value(reader.ReadUInt16()) as string);
                 default:
                 {

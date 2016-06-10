@@ -6,6 +6,7 @@ namespace jvm_cs.core.member
     public class MethodData : MemberData
     {
         public List<Instruction> Instructions { get; }
+        public List<ExceptionData> Exceptions { get; }
         public string Desc { get; }
         public ClassData Owner { get; }
 
@@ -18,6 +19,7 @@ namespace jvm_cs.core.member
             Desc = desc;
             Owner = owner;
             Instructions = new List<Instruction>();
+            Exceptions = new List<ExceptionData>();
         }
 
         public override string ToString()

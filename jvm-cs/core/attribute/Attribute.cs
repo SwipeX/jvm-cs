@@ -18,11 +18,7 @@ namespace jvm_cs.core.attribute
 
         public virtual void ReadBytes(DataReader reader)
         {
-            switch (_name) {
-                default:
-                    reader.ReadBytes((int) _length);
-                    break;
-            }
+            reader.ReadBytes((int) _length);
         }
 
         public string Name()

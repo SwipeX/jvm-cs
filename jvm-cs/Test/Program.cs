@@ -15,19 +15,20 @@ namespace Test
         [STAThread]
         private static void Main()
         {
-            ClassReader reader = new ClassReader(@"C:\Users\TimD\IdeaProjects\Test\out\production\Test\Test.class");
-               // new ClassReader(@"C:\Users\TimD\Desktop\Boot.class");
-            ClassData data = reader.Read();
-            foreach (MethodData md in data.Methods)
-            {
-                Console.WriteLine(md.Name);
-                List<Instruction> instructions = md.Instructions;
-                if (instructions == null) continue;
-                foreach (Instruction instruction in instructions)
-                {
-                    Console.WriteLine("     " + instruction);
-                }
-            }
+            new JarFile(@"C:\Users\TimD\Downloads\gp.jar");
+//            ClassReader reader = new ClassReader(@"C:\Users\TimD\IdeaProjects\Test\out\production\Test\Test.class");
+//               // new ClassReader(@"C:\Users\TimD\Desktop\Boot.class");
+//            ClassData data = reader.Read();
+//            foreach (MethodData md in data.Methods)
+//            {
+//                Console.WriteLine(md.Name);
+//                List<Instruction> instructions = md.Instructions;
+//                if (instructions == null) continue;
+//                foreach (Instruction instruction in instructions)
+//                {
+//                    Console.WriteLine("     " + instruction);
+//                }
+//            }
         }
     }
 }

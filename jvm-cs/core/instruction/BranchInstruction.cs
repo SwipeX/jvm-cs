@@ -5,10 +5,10 @@ namespace jvm_cs.core.instruction
 {
     public class BranchInstruction : Instruction
     {
-        private readonly uint _branchOffset;
+        private readonly int _branchOffset;
         public Label Label;
 
-        public BranchInstruction(byte opcode, int index, uint branchOffest) : base(opcode, index)
+        public BranchInstruction(byte opcode, int index, int branchOffest) : base(opcode, index)
         {
             _branchOffset = branchOffest;
         }

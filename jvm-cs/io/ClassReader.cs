@@ -53,7 +53,7 @@ namespace jvm_cs.io
                 ushort descriptorIndex = reader.ReadUInt16();
                 FieldData fieldData = new FieldData(_constantPool.Value(nameIndex) as string,
                     _constantPool.Value(descriptorIndex) as string, accessFlags, classData);
-                ReadAttributes(fieldData, reader);
+                ReadAttributes(fieldData, reader, _constantPool);
                 classData.Fields.Add(fieldData);
             }
 
@@ -64,18 +64,19 @@ namespace jvm_cs.io
                 ushort descriptorIndex = reader.ReadUInt16();
                 MethodData methodData = new MethodData(_constantPool.Value(nameIndex) as string,
                     _constantPool.Value(descriptorIndex) as string, accessFlags, classData);
-                ReadAttributes(methodData, reader);
+                ReadAttributes(methodData, reader, _constantPool);
                 classData.Methods.Add(methodData);
             }
-            ReadAttributes(classData, reader);
+            ReadAttributes(classData, reader, _constantPool);
+            reader.Close();
             return classData;
         }
 
-        private void ReadAttributes(MemberData owner, DataReader reader)
+        public static void ReadAttributes(MemberData owner, DataReader reader, ConstantPool pool)
         {
             ushort attributesCount = reader.ReadUInt16();
             for (int j = 0; j < attributesCount; j++) {
-                string attributeName = ((string) _constantPool.Value(reader.ReadUInt16())).Trim();
+                string attributeName = ((string) pool.Value(reader.ReadUInt16())).Trim();
                 uint attributeLength = reader.ReadUInt32();
                 Attribute attribute = null;
                 switch (attributeName) {
@@ -122,7 +123,6 @@ namespace jvm_cs.io
                         attribute = new Attribute(attributeName, attributeLength, owner);
                         break;
                 }
-                Console.WriteLine(attribute.Name());
                 attribute.ReadBytes(reader);
                 owner.Attributes.Add(attribute);
             }

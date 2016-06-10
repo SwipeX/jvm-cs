@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace jvm_cs.io
 {
@@ -20,11 +21,12 @@ namespace jvm_cs.io
 
         public void Resolve()
         {
-            switch (Tag)
-            {
+            switch (Tag) {
                 case Opcodes.NAME_TYPE:
                     uint k = DataReader.ReadUInt16(new[] {Bytes[0], Bytes[1]});
                     uint j = DataReader.ReadUInt16(new[] {Bytes[2], Bytes[3]});
+                    if (_parent.Value(j) is string[])
+                        Console.WriteLine(Index+" "+Tag+" "+k + " "+j);
                     string data = (string) _parent.Value(k);
                     string desc = (string) _parent.Value(j);
                     Value = new string[] {data, desc};
@@ -79,18 +81,16 @@ namespace jvm_cs.io
                     break;
 
                 default:
-                    Console.WriteLine("Unexpected Constant TAG");
+                    Console.WriteLine("Unexpected Constant TAG "+Tag);
                     break;
             }
-//            if (Value is string[])
-//            {
+//            if (Value is string[]) {
 //                string[] a = Value as string[];
 //                if (a.Length == 3)
 //                    Console.WriteLine(Index + ": " + Tag + " : " + a[0] + " " + a[1] + " " + a[2]);
 //                else
-//                    Console.WriteLine(Index + ": " + Tag + " : " + a[0] + " " + a[1]);
-//            }
-//            else
+//                    Console.WriteLine(Index + ": " + Tag + " : " + a[0] + " " + a[1] + " NAT");
+//            } else
 //                Console.WriteLine(Index + ": " + Tag + " : " + Value);
         }
     }
