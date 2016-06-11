@@ -98,6 +98,7 @@
     <Compile Include="io\JarFile.cs" />
     <Compile Include="Opcodes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="visitor\ClassVisitor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -107,6 +108,7 @@
     <Folder Include="core\attribute\element" />
     <Folder Include="core\member" />
     <Folder Include="core\storage" />
+    <Folder Include="visitor" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

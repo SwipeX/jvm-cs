@@ -68,7 +68,6 @@ namespace jvm_cs
         /**
          * The type of CONSTANT_InvokeDynamic constant pool items.
          */
-        public const int INDY = 18;
 
         public const int CLASS = 7;
 

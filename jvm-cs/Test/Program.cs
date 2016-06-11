@@ -1,8 +1,4 @@
-﻿using jvm_cs.core.instruction;
-using System;
-using System.Collections.Generic;
-using jvm_cs.core;
-using jvm_cs.core.member;
+﻿using System;
 using jvm_cs.io;
 
 namespace Test
@@ -15,7 +11,7 @@ namespace Test
         [STAThread]
         private static void Main()
         {
-            new JarFile(@"C:\Users\TimD\Downloads\gp.jar");
+            new JarFile(@"C:\Users\timde\Desktop\pack.jar");
 //            ClassReader reader = new ClassReader(@"C:\Users\TimD\IdeaProjects\Test\out\production\Test\Test.class");
 //               // new ClassReader(@"C:\Users\TimD\Desktop\Boot.class");
 //            ClassData data = reader.Read();

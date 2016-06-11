@@ -19,17 +19,26 @@ namespace jvm_cs.io
             Bytes = value;
         }
 
+        public ConstantPoolEntry(ConstantPool parent, int index, byte tag, dynamic value)
+        {
+            _parent = parent;
+            Index = index;
+            Tag = tag;
+            Value = value;
+        }
+
         public void Resolve()
         {
-            switch (Tag) {
+            switch (Tag)
+            {
                 case Opcodes.NAME_TYPE:
                     uint k = DataReader.ReadUInt16(new[] {Bytes[0], Bytes[1]});
                     uint j = DataReader.ReadUInt16(new[] {Bytes[2], Bytes[3]});
                     if (_parent.Value(j) is string[])
-                        Console.WriteLine(Index+" "+Tag+" "+k + " "+j);
+                        Console.WriteLine(Index + " " + Tag + " " + k + " " + j);
                     string data = (string) _parent.Value(k);
                     string desc = (string) _parent.Value(j);
-                    Value = new string[] {data, desc};
+                    Value = new[] {data, desc};
                     break;
                 case Opcodes.IMETH:
                 case Opcodes.METH:
@@ -38,10 +47,10 @@ namespace jvm_cs.io
                     uint nameTypeIndex = DataReader.ReadUInt16(new[] {Bytes[2], Bytes[3]});
                     string className = (string) _parent.Value(classIndex);
                     string[] nameType = (string[]) _parent.Value(nameTypeIndex);
-                    Value = new string[] {className, nameType[0], nameType[1]};
+                    Value = new[] {className, nameType[0], nameType[1]};
                     break;
 
-                case Opcodes.INDY:
+                case Opcodes.INVOKE_DYNAMIC:
                     //bootstrap_method_attr_index???
                     uint i = DataReader.ReadUInt16(new[] {Bytes[2], Bytes[3]});
                     Value = _parent.Value(i);
@@ -81,17 +90,9 @@ namespace jvm_cs.io
                     break;
 
                 default:
-                    Console.WriteLine("Unexpected Constant TAG "+Tag);
+                    Console.WriteLine("Unexpected Constant TAG " + Tag);
                     break;
             }
-//            if (Value is string[]) {
-//                string[] a = Value as string[];
-//                if (a.Length == 3)
-//                    Console.WriteLine(Index + ": " + Tag + " : " + a[0] + " " + a[1] + " " + a[2]);
-//                else
-//                    Console.WriteLine(Index + ": " + Tag + " : " + a[0] + " " + a[1] + " NAT");
-//            } else
-//                Console.WriteLine(Index + ": " + Tag + " : " + Value);
         }
     }
 }

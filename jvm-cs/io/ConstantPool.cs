@@ -18,16 +18,18 @@ namespace jvm_cs.io
 
         public void Read(DataReader reader)
         {
-            for (int i = 1; i < _size; i++) {
+            for (int i = 1; i < _size; i++)
+            {
                 byte tag = reader.ReadByte();
-                switch (tag) {
+                switch (tag)
+                {
                     case Opcodes.FIELD:
                     case Opcodes.METH:
                     case Opcodes.IMETH:
                     case Opcodes.INTEGER:
                     case Opcodes.FLOAT:
                     case Opcodes.NAME_TYPE:
-                    case Opcodes.INDY:
+                    case Opcodes.INVOKE_DYNAMIC:
                         _entries[i] = new ConstantPoolEntry(this, i, tag,
                             reader.ReadBytes(4));
                         break;
@@ -41,8 +43,10 @@ namespace jvm_cs.io
                         break;
 
                     case Opcodes.UTF8:
+                        ushort length = reader.ReadUInt16();
+                        byte[] bytes = reader.ReadBytes(length);
                         _entries[i] = new ConstantPoolEntry(this, i, tag,
-                            reader.ReadBytes(reader.ReadUInt16()));
+                            Encoding.UTF8.GetString(bytes));
                         break;
 
                     case Opcodes.HANDLE:
@@ -62,30 +66,24 @@ namespace jvm_cs.io
                         break;
                 }
             }
-            ResolveUtf8();
-            for (int i = 1; i < _size; i++) {
+            for (int i = 1; i < _size; i++)
+            {
                 _entries[i].Resolve();
             }
         }
 
-
         public object Value(long index)
         {
-            if (index > 0 && index < _size) {
-                if (_entries[index].Value == null) {
-                    _entries[index].Resolve();
-                }
-                return _entries[index].Value;
-            }
-            Console.WriteLine(Environment.StackTrace + " " + index + " requested OOB");
-            return new object();
+            if (index <= 0 || index >= _size)
+                throw new ArgumentException(index + " was requested, which is out of bounds");
+            if (_entries[index].Value == null)
+                _entries[index].Resolve();
+            return _entries[index].Value;
         }
 
-        private void ResolveUtf8()
+        public override string ToString()
         {
-            foreach (ConstantPoolEntry cpe in _entries.Where(cpe => cpe != null && cpe.Tag == Opcodes.UTF8)) {
-                cpe.Value = Encoding.UTF8.GetString(cpe.Bytes);
-            }
+            return $"Entries: {_entries}, Size: {_size}";
         }
     }
 }
