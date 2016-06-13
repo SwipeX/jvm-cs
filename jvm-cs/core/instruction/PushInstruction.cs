@@ -24,7 +24,7 @@ namespace jvm_cs.core.instruction
         public override void Write(DataWriter writer)
         {
             base.Write(writer);
-            writer.Write(PushValue);
+            writer.WriteUInt16((ushort) PushValue);
         }
     }
 }

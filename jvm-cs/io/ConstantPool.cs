@@ -91,6 +91,7 @@ namespace jvm_cs.io
 
         public void Write(DataWriter writer)
         {
+            writer.Write(_entries.Length);
             foreach (var constantPoolEntry in _entries) { constantPoolEntry.Write(writer); }
         }
     }

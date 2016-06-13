@@ -27,6 +27,7 @@ namespace jvm_cs.core.instruction
         public override void Write(DataWriter writer)
         {
             base.Write(writer);
+            writer.WriteUInt16(Parent.Owner.Pool.IndexOf(Type));
         }
     }
 }

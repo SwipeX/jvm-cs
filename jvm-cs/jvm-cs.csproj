@@ -92,6 +92,7 @@
     <Compile Include="core\storage\ClassGroup.cs" />
     <Compile Include="core\Utilities.cs" />
     <Compile Include="io\ClassReader.cs" />
+    <Compile Include="io\ClassWriter.cs" />
     <Compile Include="io\ConstantPool.cs" />
     <Compile Include="io\ConstantPoolEntry.cs" />
     <Compile Include="io\DataReader.cs" />

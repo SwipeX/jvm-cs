@@ -33,6 +33,7 @@ namespace jvm_cs.io
             }
             ushort minor = reader.ReadUInt16();
             ushort major = reader.ReadUInt16();
+            Console.WriteLine(major + " "+minor);
             ushort constantPoolSize = reader.ReadUInt16();
             _constantPool = new ConstantPool(constantPoolSize);
             _constantPool.Read(reader);
@@ -44,8 +45,11 @@ namespace jvm_cs.io
                 _interfaces.Add((string) _constantPool.Value(reader.ReadUInt16()));
             }
 
-            ClassData classData = new ClassData(className, superName, access, _constantPool, _interfaces, _bytes);
-
+            ClassData classData = new ClassData(className, superName, access, _constantPool, _interfaces, _bytes)
+            {
+                MinorVersion = minor,
+                MajorVersion = major
+            };
             ushort fieldCount = reader.ReadUInt16();
             for (int i = 0; i < fieldCount; i++) {
                 ushort accessFlags = reader.ReadUInt16();

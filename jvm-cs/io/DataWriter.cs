@@ -10,38 +10,38 @@ namespace jvm_cs.io
         {
         }
 
-
-        public override void Write(double num)
+        public void WriteDouble(double num)
         {
             base.Write((byte[]) BitConverter.GetBytes(num).Reverse());
         }
 
-        public override void Write(float num)
+        public void WriteFloat(float num)
         {
             base.Write((byte[]) BitConverter.GetBytes(num).Reverse());
         }
 
-        public override void Write(short num)
+        public void WriteInt16(short num)
         {
             base.Write(new byte[] {(byte) (num >> 8 & 0xFF), (byte) (num & 0xFF)});
         }
 
-        public override void Write(ushort num)
+        public void WriteUInt16(ushort num)
         {
             base.Write(new byte[] {(byte) (num >> 8 & 0xFF), (byte) (num & 0xFF)});
         }
 
-        public override void Write(uint num)
+        public void WriteUInt32(uint num)
         {
             base.Write(new byte[] {(byte) (num >> 24 & 0xFF), (byte) (num >> 16 & 0xFF), (byte) (num >> 8 & 0xFF), (byte) (num & 0xFF)});
         }
 
-        public override void Write(int num)
+        public void WriteInt32(int num)
         {
             base.Write(new byte[] {(byte) (num >> 24 & 0xFF), (byte) (num >> 16 & 0xFF), (byte) (num >> 8 & 0xFF), (byte) (num & 0xFF)});
         }
 
-        public override void Write(ulong num)
+
+        public void WriteUInt64(ulong num)
         {
             base.Write(new byte[]
             {
@@ -50,7 +50,7 @@ namespace jvm_cs.io
             });
         }
 
-        public override void Write(long num)
+        public void WriteInt64(long num)
         {
             base.Write(new byte[]
             {

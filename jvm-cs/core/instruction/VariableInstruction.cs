@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using jvm_cs.io;
 
 namespace jvm_cs.core.instruction
 {
@@ -18,6 +19,12 @@ namespace jvm_cs.core.instruction
         public override string ToString()
         {
             return base.ToString() + " " + VarIndex;
+        }
+
+        public override void Write(DataWriter writer)
+        {
+            base.Write(writer);
+            writer.WriteUInt16((ushort) VarIndex);
         }
     }
 }

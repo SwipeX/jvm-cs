@@ -16,6 +16,8 @@ namespace jvm_cs.core
         public ConstantPool Pool { get; }
         public string SuperName { get; }
         public byte[] Bytes { get; set; }
+        public ushort MinorVersion = 0;
+        public ushort MajorVersion = 50;
 
         public ClassData(string name, string supername, int access, ConstantPool constantPool, List<string> interfaces,
             byte[] bytes) : base(name, access)

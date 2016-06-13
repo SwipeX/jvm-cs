@@ -21,6 +21,6 @@ namespace jvm_cs.core.attribute
                 Values[i] = new AnnotationElementValue('@', reader);
             }
         }
-        
+
     }
 }
