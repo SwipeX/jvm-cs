@@ -18,11 +18,9 @@ namespace jvm_cs.io
 
         public void Read(DataReader reader)
         {
-            for (int i = 1; i < _size; i++)
-            {
+            for (int i = 1; i < _size; i++) {
                 byte tag = reader.ReadByte();
-                switch (tag)
-                {
+                switch (tag) {
                     case Opcodes.FIELD:
                     case Opcodes.METH:
                     case Opcodes.IMETH:
@@ -66,8 +64,7 @@ namespace jvm_cs.io
                         break;
                 }
             }
-            for (int i = 1; i < _size; i++)
-            {
+            for (int i = 1; i < _size; i++) {
                 _entries[i].Resolve();
             }
         }
@@ -81,9 +78,20 @@ namespace jvm_cs.io
             return _entries[index].Value;
         }
 
+        public ushort IndexOf(object value)
+        {
+            var constantPoolEntry = _entries.FirstOrDefault(e => e != null && e.Value != null && e.Value.Equals(value));
+            return (ushort) (constantPoolEntry?.Index ?? ushort.MaxValue);
+        }
+
         public override string ToString()
         {
             return $"Entries: {_entries}, Size: {_size}";
+        }
+
+        public void Write(DataWriter writer)
+        {
+            foreach (var constantPoolEntry in _entries) { constantPoolEntry.Write(writer); }
         }
     }
 }

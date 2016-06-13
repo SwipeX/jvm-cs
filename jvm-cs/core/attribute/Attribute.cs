@@ -1,4 +1,5 @@
 ﻿using jvm_cs.core.member;
+using jvm_cs.io;
 
 namespace jvm_cs.core.attribute
 {
@@ -19,6 +20,10 @@ namespace jvm_cs.core.attribute
         public virtual void ReadBytes(DataReader reader)
         {
             reader.ReadBytes((int) _length);
+        }
+
+        public virtual void Write(DataWriter writer)
+        {
         }
 
         public string Name()

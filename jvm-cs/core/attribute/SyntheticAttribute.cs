@@ -1,4 +1,5 @@
 ﻿using jvm_cs.core.member;
+using jvm_cs.io;
 
 namespace jvm_cs.core.attribute
 {
@@ -8,5 +9,6 @@ namespace jvm_cs.core.attribute
         public SyntheticAttribute(string name, uint length, MemberData owner) : base(name, length, owner)
         {
         }
+
     }
 }

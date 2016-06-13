@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using jvm_cs.core.attribute;
+using jvm_cs.visitor;
 
 namespace jvm_cs.core.member
 {
@@ -17,6 +18,11 @@ namespace jvm_cs.core.member
         public override string ToString()
         {
             return Name + " " + Desc;
+        }
+
+        public void Visit(FieldVisitor visitor)
+        {
+            Attributes.ForEach(visitor.VisitAttribute);
         }
     }
 }

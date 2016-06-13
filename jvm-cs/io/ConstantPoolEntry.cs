@@ -29,8 +29,7 @@ namespace jvm_cs.io
 
         public void Resolve()
         {
-            switch (Tag)
-            {
+            switch (Tag) {
                 case Opcodes.NAME_TYPE:
                     uint k = DataReader.ReadUInt16(new[] {Bytes[0], Bytes[1]});
                     uint j = DataReader.ReadUInt16(new[] {Bytes[2], Bytes[3]});
@@ -93,6 +92,11 @@ namespace jvm_cs.io
                     Console.WriteLine("Unexpected Constant TAG " + Tag);
                     break;
             }
+        }
+
+        public void Write(DataWriter writer)
+        {
+            writer.Write(Bytes);
         }
     }
 }

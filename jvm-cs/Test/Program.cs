@@ -11,7 +11,7 @@ namespace Test
         [STAThread]
         private static void Main()
         {
-            new JarFile(@"C:\Users\timde\Desktop\pack.jar");
+            new JarFile(@"C:\Users\TimD\Downloads\gp.jar");
 //            ClassReader reader = new ClassReader(@"C:\Users\TimD\IdeaProjects\Test\out\production\Test\Test.class");
 //               // new ClassReader(@"C:\Users\TimD\Desktop\Boot.class");
 //            ClassData data = reader.Read();

@@ -95,10 +95,13 @@
     <Compile Include="io\ConstantPool.cs" />
     <Compile Include="io\ConstantPoolEntry.cs" />
     <Compile Include="io\DataReader.cs" />
+    <Compile Include="io\DataWriter.cs" />
     <Compile Include="io\JarFile.cs" />
     <Compile Include="Opcodes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="visitor\ClassVisitor.cs" />
+    <Compile Include="visitor\FieldVisitor.cs" />
+    <Compile Include="visitor\MethodVisitor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

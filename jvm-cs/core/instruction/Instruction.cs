@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using jvm_cs.io;
 
 namespace jvm_cs.core.instruction
 {
@@ -25,9 +26,14 @@ namespace jvm_cs.core.instruction
             return Previous != null;
         }
 
-         public override string ToString()
-         {
-             return Opcodes.NAMES[Opcode];
-         }
+        public override string ToString()
+        {
+            return Opcodes.NAMES[Opcode];
+        }
+
+        public virtual void Write(DataWriter writer)
+        {
+            writer.Write(Opcode);
+        }
     }
 }

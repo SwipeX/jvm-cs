@@ -3,6 +3,7 @@ using jvm_cs.core.attribute;
 using jvm_cs.core.member;
 using jvm_cs.core.storage;
 using jvm_cs.io;
+using jvm_cs.visitor;
 
 namespace jvm_cs.core
 {
@@ -39,6 +40,16 @@ namespace jvm_cs.core
         public override string ToString()
         {
             return Name;
+        }
+
+        public void Visit(ClassVisitor visitor)
+        {
+            visitor.VisitClass(Access, Name, SuperName, Interfaces);
+            Attributes.ForEach(visitor.VisitAttribute);
+            Fields.ForEach(visitor.VisitField);
+            Methods.ForEach(visitor.VisitMethod);
+            InnerClasses.ForEach(visitor.VisitInnerClass);
+            visitor.CompleteVisit();
         }
     }
 }

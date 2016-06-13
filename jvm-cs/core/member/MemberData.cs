@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using jvm_cs.visitor;
 using Attribute = jvm_cs.core.attribute.Attribute;
 
 namespace jvm_cs.core.member

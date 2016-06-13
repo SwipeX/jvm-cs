@@ -94,7 +94,7 @@ namespace jvm_cs.core.attribute
                     string[] data = ReadMethod(reader);
                     byte count = reader.ReadByte();
                     reader.ReadByte(); //Read the zero that java likes to stick here...
-                    return new MethodInstruction(opcode, index, data[0], data[1], data[2], count);
+                    return new MethodInstruction(opcode, index, data[0], data[1], data[2], count, Owner);
                 case Opcodes.IFEQ:
                 case Opcodes.IFNE:
                 case Opcodes.IFLT:
@@ -128,7 +128,7 @@ namespace jvm_cs.core.attribute
                     string[] method = ReadMethod(reader);
                     if (opcode == Opcodes.INVOKEDYNAMIC)
                         reader.ReadBytes(2); //read the 0's because java
-                    return new MemberInstruction(opcode, index, method[0], method[1], method[2]);
+                    return new MemberInstruction(opcode, index, method[0], method[1], method[2], Owner);
 
                 case Opcodes.IINC:
                     return new IncrementInstruction(opcode, index, wide ? reader.ReadInt16() : reader.ReadByte(),
@@ -167,7 +167,7 @@ namespace jvm_cs.core.attribute
                 case Opcodes.ANEWARRAY:
                 case Opcodes.INSTANCEOF:
                 case Opcodes.NEW:
-                    return new TypeInstruction(opcode, index, Owner.Owner.Pool.Value(reader.ReadUInt16()) as string);
+                    return new TypeInstruction(opcode, index, Owner.Owner.Pool.Value(reader.ReadUInt16()) as string, Owner);
                 default:
                 {
                     if (opcode >= Opcodes.IADD && opcode <= Opcodes.LXOR) {
