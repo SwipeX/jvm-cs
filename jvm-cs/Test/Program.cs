@@ -11,8 +11,11 @@ namespace Test
         [STAThread]
         private static void Main()
         {
-            new JarFile(@"C:\Users\TimD\Downloads\gp.jar");
-//            ClassReader reader = new ClassReader(@"C:\Users\TimD\IdeaProjects\Test\out\production\Test\Test.class");
+                 new JarFile(@"C:\Users\TimD\Downloads\gp.jar");
+         //   ClassReader reader = new ClassReader(@"C:\Users\TimD\IdeaProjects\Test\out\production\Test\Test.class");
+        //    byte[] b = ClassWriter.Write(reader.Read());
+         //   ClassReader reader2 = new ClassReader(b);
+          //  reader2.Read();
 //               // new ClassReader(@"C:\Users\TimD\Desktop\Boot.class");
 //            ClassData data = reader.Read();
 //            foreach (MethodData md in data.Methods)

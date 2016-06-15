@@ -13,7 +13,7 @@ namespace jvm_cs.core.attribute
 
         public override void ReadBytes(DataReader reader)
         {
-           Value = ElementValue.GetElementValue(reader);
+            Value = ElementValue.GetElementValue(reader);
         }
     }
 }

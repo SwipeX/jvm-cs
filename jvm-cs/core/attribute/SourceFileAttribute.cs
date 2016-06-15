@@ -17,9 +17,5 @@ namespace jvm_cs.core.attribute
             SourceFile = Owner.Pool.Value(reader.ReadUInt16());
         }
 
-        public override void Write(DataWriter writer)
-        {
-            writer.Write(Owner.Pool.IndexOf(SourceFile));
-        }
     }
 }

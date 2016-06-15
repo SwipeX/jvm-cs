@@ -44,7 +44,7 @@ namespace jvm_cs.io
                         ushort length = reader.ReadUInt16();
                         byte[] bytes = reader.ReadBytes(length);
                         _entries[i] = new ConstantPoolEntry(this, i, tag,
-                            Encoding.UTF8.GetString(bytes));
+                            Encoding.UTF8.GetString(bytes),bytes);
                         break;
 
                     case Opcodes.HANDLE:
@@ -84,6 +84,12 @@ namespace jvm_cs.io
             return (ushort) (constantPoolEntry?.Index ?? ushort.MaxValue);
         }
 
+        public ushort IndexOf(object value, byte tag)
+        {
+            var constantPoolEntry = _entries.FirstOrDefault(e => e != null && e.Value != null && e.Value.Equals(value) && e.Tag == tag);
+            return (ushort) (constantPoolEntry?.Index ?? ushort.MaxValue);
+        }
+
         public override string ToString()
         {
             return $"Entries: {_entries}, Size: {_size}";
@@ -92,7 +98,9 @@ namespace jvm_cs.io
         public void Write(DataWriter writer)
         {
             writer.Write(_entries.Length);
-            foreach (var constantPoolEntry in _entries) { constantPoolEntry.Write(writer); }
+            foreach (var constantPoolEntry in _entries) {
+                constantPoolEntry?.Write(writer);
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using jvm_cs.core.member;
 
 namespace jvm_cs.core.storage
 {

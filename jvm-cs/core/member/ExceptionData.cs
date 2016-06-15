@@ -22,5 +22,11 @@ namespace jvm_cs.core.member
             ushort[] data = {reader.ReadUInt16(), reader.ReadUInt16(), reader.ReadUInt16(), reader.ReadUInt16()};
             return new ExceptionData(data[0], data[1], data[2], data[3] == 0 ? "0" : pool.Value(data[3]) as string);
         }
+
+        public void Write(DataWriter writer, ConstantPool pool)
+        {
+            ushort[] data = {StartLocation, EndLocation, HandlerLocation, pool.IndexOf(CatchType)};
+            foreach (ushort num in data) { writer.WriteUInt16(num); }
+        }
     }
 }

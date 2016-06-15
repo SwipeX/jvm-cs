@@ -40,7 +40,6 @@ namespace jvm_cs.io
             base.Write(new byte[] {(byte) (num >> 24 & 0xFF), (byte) (num >> 16 & 0xFF), (byte) (num >> 8 & 0xFF), (byte) (num & 0xFF)});
         }
 
-
         public void WriteUInt64(ulong num)
         {
             base.Write(new byte[]

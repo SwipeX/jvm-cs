@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using jvm_cs.core.instruction;
 using jvm_cs.core.member;
+using jvm_cs.io;
 
 namespace jvm_cs.core.attribute
 {
@@ -29,10 +29,26 @@ namespace jvm_cs.core.attribute
             for (int i = 0; i < attributesCount; i++) {
                 ushort nameIndex = reader.ReadUInt16();
                 uint length = reader.ReadUInt32();
-                Attribute subAttribute = new Attribute(Owner.Owner.Pool.Value(nameIndex), length, null);
+                Attribute subAttribute = new Attribute(Owner.Owner.Pool.Value(nameIndex) as string, length, null as MemberData);
                 subAttribute.ReadBytes(reader);
                 Attributes.Add(subAttribute);
             }
+        }
+
+        public override void Write(DataWriter writer)
+        {
+            writer.WriteUInt16(Owner.MaxStack);
+            writer.WriteUInt16(Owner.MaxLocals);
+            byte[] code = PackInstructions(Owner.Instructions);
+            writer.WriteUInt16((ushort) code.Length);
+            List<ExceptionData> exceptions = Owner.Exceptions;
+            writer.WriteUInt16((ushort) exceptions.Count);
+            exceptions.ForEach(ex=>ex.Write(writer));
+        }
+
+        private byte[] PackInstructions(List<Instruction> instructions)
+        {
+            return null;
         }
 
         private void ProcessCode(byte[] data)

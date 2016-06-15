@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using jvm_cs.core;
+using jvm_cs.core.member;
 using jvm_cs.core.storage;
 
 namespace jvm_cs.io

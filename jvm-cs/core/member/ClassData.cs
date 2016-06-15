@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
-using jvm_cs.core.attribute;
-using jvm_cs.core.member;
 using jvm_cs.core.storage;
 using jvm_cs.io;
 using jvm_cs.visitor;
 
-namespace jvm_cs.core
+namespace jvm_cs.core.member
 {
     public class ClassData : MemberData
     {

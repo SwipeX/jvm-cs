@@ -18,5 +18,5 @@ namespace jvm_cs.core
         {
             return SystemPackages.Any(className.StartsWith);
         }
-    }
+    };
 }

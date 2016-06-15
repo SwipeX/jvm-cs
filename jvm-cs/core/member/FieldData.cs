@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using jvm_cs.core.attribute;
+using jvm_cs.io;
 using jvm_cs.visitor;
 
 namespace jvm_cs.core.member
@@ -23,6 +24,15 @@ namespace jvm_cs.core.member
         public void Visit(FieldVisitor visitor)
         {
             Attributes.ForEach(visitor.VisitAttribute);
+        }
+
+        public void Write(DataWriter writer)
+        {
+            writer.WriteInt16((short) Access);
+            writer.WriteUInt16(Owner.Pool.IndexOf(Name));
+            writer.WriteUInt16(Owner.Pool.IndexOf(Desc));
+            writer.WriteUInt16((ushort) Attributes.Count);
+            Attributes.ForEach(a => a.Write(writer));
         }
     }
 }

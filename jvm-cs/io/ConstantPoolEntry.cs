@@ -19,12 +19,13 @@ namespace jvm_cs.io
             Bytes = value;
         }
 
-        public ConstantPoolEntry(ConstantPool parent, int index, byte tag, dynamic value)
+        public ConstantPoolEntry(ConstantPool parent, int index, byte tag, dynamic value, byte[] b)
         {
             _parent = parent;
             Index = index;
             Tag = tag;
             Value = value;
+            Bytes = b;
         }
 
         public void Resolve()
@@ -96,6 +97,7 @@ namespace jvm_cs.io
 
         public void Write(DataWriter writer)
         {
+            writer.Write(Tag);
             writer.Write(Bytes);
         }
     }

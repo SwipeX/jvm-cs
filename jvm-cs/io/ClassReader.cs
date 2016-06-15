@@ -33,7 +33,6 @@ namespace jvm_cs.io
             }
             ushort minor = reader.ReadUInt16();
             ushort major = reader.ReadUInt16();
-            Console.WriteLine(major + " "+minor);
             ushort constantPoolSize = reader.ReadUInt16();
             _constantPool = new ConstantPool(constantPoolSize);
             _constantPool.Read(reader);

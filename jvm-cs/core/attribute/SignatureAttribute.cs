@@ -22,16 +22,5 @@ namespace jvm_cs.core.attribute
             Signature = pool.Value(reader.ReadUInt16()) as string;
         }
 
-        public override void Write(DataWriter writer)
-        {
-            ConstantPool pool;
-            if (Owner is ClassData) {
-                pool = Owner.Pool;
-            } else {
-                pool = Owner.Owner.Pool;
-            }
-            ushort idx = pool.IndexOf(Signature);
-            writer.Write(idx);
-        }
     }
 }
