@@ -33,7 +33,7 @@ namespace jvm_cs.core.instruction
 
         public virtual void Write(DataWriter writer)
         {
-            writer.WriteUInt16(Opcode);
+            writer.Write(Opcode);
         }
     }
 }

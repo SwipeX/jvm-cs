@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Security.Cryptography.X509Certificates;
+using jvm_cs.io;
 
 namespace jvm_cs.core.instruction
 {
@@ -21,6 +22,12 @@ namespace jvm_cs.core.instruction
         public override string ToString()
         {
             return base.ToString() + " " + Label.JumpIndex;
+        }
+
+        public override void Write(DataWriter writer)
+        {
+            base.Write(writer);
+            writer.WriteUInt16((ushort) _branchOffset);
         }
     }
 }

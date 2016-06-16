@@ -25,7 +25,7 @@ namespace jvm_cs.core.member
 
         public void Write(DataWriter writer, ConstantPool pool)
         {
-            ushort[] data = {StartLocation, EndLocation, HandlerLocation, pool.IndexOf(CatchType)};
+            ushort[] data = {StartLocation, EndLocation, HandlerLocation, (ushort) (CatchType.Equals("0") ? 0 : pool.IndexOf(CatchType))};
             foreach (ushort num in data) { writer.WriteUInt16(num); }
         }
     }

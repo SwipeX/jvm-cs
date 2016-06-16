@@ -34,8 +34,6 @@ namespace jvm_cs.io
                 case Opcodes.NAME_TYPE:
                     uint k = DataReader.ReadUInt16(new[] {Bytes[0], Bytes[1]});
                     uint j = DataReader.ReadUInt16(new[] {Bytes[2], Bytes[3]});
-                    if (_parent.Value(j) is string[])
-                        Console.WriteLine(Index + " " + Tag + " " + k + " " + j);
                     string data = (string) _parent.Value(k);
                     string desc = (string) _parent.Value(j);
                     Value = new[] {data, desc};
@@ -95,10 +93,49 @@ namespace jvm_cs.io
             }
         }
 
+        public byte[] Dissolve()
+        {
+            switch (Tag) {
+                case Opcodes.NAME_TYPE:
+                    string[] val = Value;
+                    return new byte[] {(byte) _parent.IndexOf(val[0]), (byte) _parent.IndexOf(val[1])};
+                case Opcodes.IMETH:
+                case Opcodes.METH:
+                case Opcodes.FIELD:
+                    string[] data = Value;
+                    byte zero = (byte) _parent.IndexOf(data[0]);
+                    byte one = (byte) _parent.IndexOf(new string[] {data[1], data[2]});
+                    return new byte[] {zero, one};
+                case Opcodes.INVOKE_DYNAMIC://TODO add support
+                    return Bytes;
+                case Opcodes.INTEGER:
+                    return DataWriter.UInt16(Value);
+                case Opcodes.FLOAT:
+                    return BitConverter.GetBytes(Value);
+                case Opcodes.LONG:
+                    return DataWriter.UInt64(Value);
+                case Opcodes.DOUBLE:
+                    return BitConverter.GetBytes(Value);
+                case Opcodes.UTF8:
+                    return _parent.IndexOf(Value, Opcodes.UTF8);
+                case Opcodes.HANDLE:
+                    return Bytes;//TODO add support
+                case Opcodes.STR:
+                    return _parent.IndexOf(Value, Opcodes.STR);
+                case Opcodes.MTYPE:
+                    return _parent.IndexOf(Value, Opcodes.MTYPE);
+                case Opcodes.CLASS:
+                    return _parent.IndexOf(Value, Opcodes.CLASS);
+                default:
+                    Console.WriteLine("Unexpected Constant TAG " + Tag);
+                    return new byte[] {0};
+            }
+        }
+
         public void Write(DataWriter writer)
         {
             writer.Write(Tag);
-            writer.Write(Bytes);
+            writer.Write(Dissolve());
         }
     }
 }

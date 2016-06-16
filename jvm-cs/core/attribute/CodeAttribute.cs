@@ -41,9 +41,10 @@ namespace jvm_cs.core.attribute
             writer.WriteUInt16(Owner.MaxLocals);
             byte[] code = PackInstructions(Owner.Instructions);
             writer.WriteUInt16((ushort) code.Length);
+            writer.Write(code);
             List<ExceptionData> exceptions = Owner.Exceptions;
             writer.WriteUInt16((ushort) exceptions.Count);
-            exceptions.ForEach(ex=>ex.Write(writer));
+            exceptions.ForEach(ex => ex.Write(writer, Owner.Owner.Pool));
         }
 
         private byte[] PackInstructions(List<Instruction> instructions)
